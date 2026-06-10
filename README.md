@@ -12,6 +12,13 @@ in-browser Babel via CDN, no build step). Deploys to any static host.
 - **Browse** — hero search, category filters, class-card grid, instructor editorial section.
 - **Class detail** — image mosaic, instructor, key facts, schedule picker, reviews, sticky booking card.
 - **Booking** — 4-step modal (review → who's coming → payment → confirmation).
+- **Account** — bookings, saved classes, messages (hash routes under `/account`).
+- **Teach** — instructor landing + application flow.
+- **Gift cards**, **Help center**, **Auth** (sign in / sign up), and supporting pages
+  (about, press, careers, blog, pricing, trust, contact…).
+
+Routing is client-side and **hash-based** (`#/class/…`, `#/teach`, `#/account`), so a single
+static `index.html` serves every route — deep-links and refreshes work with no server rewrites.
 
 ## Run locally
 

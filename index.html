@@ -17,14 +17,12 @@
   html, body { margin: 0; padding: 0; }
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    color: #101828;
-    background: #FFFFFF;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    color: #101828; background: #FFFFFF;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   }
   button { font-family: inherit; }
+  a { color: inherit; }
   ::selection { background: #E9D7FE; color: #42307D; }
-
   @keyframes fadein { from { opacity: 0 } to { opacity: 1 } }
   @keyframes rise   { from { transform: translateY(12px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
 </style>
@@ -36,7 +34,7 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-<!-- classes-data.jsx -->
+<!-- data.jsx -->
 <script type="text/babel" data-presets="react">
 // data.js — class catalog for InPerson
 
@@ -339,6 +337,31 @@ window.Icon = {
   shield:    (p) => <I {...p} d="M12 2L3 6v6c0 5.5 3.84 10.74 9 12 5.16-1.26 9-6.5 9-12V6l-9-4z"/>,
   message:   (p) => <I {...p} d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>,
   lock:      (p) => <I {...p} d={<><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></>}/>,
+  gift:      (p) => <I {...p} d={<><path d="M20 12v10H4V12"/><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></>}/>,
+  briefcase: (p) => <I {...p} d={<><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></>}/>,
+  mail:      (p) => <I {...p} d={<><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></>}/>,
+  phone:     (p) => <I {...p} d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/>,
+  card:      (p) => <I {...p} d={<><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></>}/>,
+  ticket:    (p) => <I {...p} d="M3 9a2 2 0 012-2h14a2 2 0 012 2v1a2 2 0 000 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1a2 2 0 000-4V9z"/>,
+  logout:    (p) => <I {...p} d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>,
+  settings:  (p) => <I {...p} d={<><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></>}/>,
+  bell:      (p) => <I {...p} d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>,
+  book:      (p) => <I {...p} d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 016.5 22H20V2H6.5A2.5 2.5 0 004 4.5v15z"/>,
+  globe:     (p) => <I {...p} d={<><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></>}/>,
+  quote:     (p) => <I {...p} fill="currentColor" stroke="none" d="M7 7h5v6c0 2.8-1.9 4.6-4.8 5L6.6 21C9 20.3 10 19 10 17H7V7zm9 0h5v6c0 2.8-1.9 4.6-4.8 5L15.6 21c2.4-.7 3.4-2 3.4-4h-3V7z"/>,
+  help:      (p) => <I {...p} d={<><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 015.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></>}/>,
+  play:      (p) => <I {...p} fill="currentColor" stroke="none" d="M8 5v14l11-7z"/>,
+  building:  (p) => <I {...p} d={<><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M9 6h.01M15 6h.01M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></>}/>,
+  dollar:    (p) => <I {...p} d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>,
+  trending:  (p) => <I {...p} d="M23 6l-9.5 9.5-5-5L1 18M17 6h6v6"/>,
+  upRight:   (p) => <I {...p} d="M7 17L17 7M7 7h10v10"/>,
+  edit:      (p) => <I {...p} d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.12 2.12 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>,
+  trash:     (p) => <I {...p} d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>,
+  camera:    (p) => <I {...p} d={<><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></>}/>,
+  chevU:     (p) => <I {...p} d="M18 15l-6-6-6 6"/>,
+  award:     (p) => <I {...p} d={<><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5L17 22l-5-3-5 3 1.5-8.5"/></>}/>,
+  zap:       (p) => <I {...p} d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>,
+  leaf:      (p) => <I {...p} d="M11 20A7 7 0 019.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10zM2 21c0-3 1.85-5.36 5.08-6"/>,
 };
 
 </script>
@@ -514,6 +537,404 @@ window.HeroPhoto = HeroPhoto;
 
 </script>
 
+<!-- store.jsx -->
+<script type="text/babel" data-presets="react">
+// store.jsx — global session store, hash router, theme context, helpers
+(function () {
+  const { useState, useEffect, useReducer, useContext, createContext } = React;
+
+  // ─── Persistent session store ──────────────────────────────────────────────
+  const LS_KEY = 'inperson.session.v2';
+  function load() {
+    try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  const seedThreads = [
+    {
+      id: 'th-maya', who: 'Maya Lindqvist', hue: 18, classTitle: 'Sourdough from scratch',
+      msgs: [
+        { from: 'them', t: "Hi! So glad you booked. Quick q — any flour allergies I should know about?", when: 'Mon 9:14 AM' },
+        { from: 'them', t: "Also feel free to bring a tote for your loaf 🍞", when: 'Mon 9:15 AM' },
+      ],
+    },
+    {
+      id: 'th-diego', who: 'Diego Marín', hue: 200, classTitle: 'First turns on a board',
+      msgs: [
+        { from: 'them', t: "Welcome aboard! Weather's looking great for Saturday. Dress in waterproof layers.", when: 'Sun 6:02 PM' },
+      ],
+    },
+  ];
+
+  const saved0 = load();
+  let state = {
+    user: saved0.user || null,            // { name, email, city, bio, hue, joined }
+    saved: saved0.saved || [],            // [classId]
+    bookings: saved0.bookings || [],      // [{ id, classId, day, date, time, seats, total, status, confirmation, booked }]
+    threads: saved0.threads || seedThreads,
+    authMode: null,                       // null | 'signin' | 'signup'  (not persisted)
+    authIntent: null,                     // path to go to after auth
+  };
+  const listeners = new Set();
+  function persist() {
+    const { user, saved, bookings, threads } = state;
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ user, saved, bookings, threads })); } catch (e) {}
+  }
+  function set(patch) {
+    state = { ...state, ...(typeof patch === 'function' ? patch(state) : patch) };
+    persist();
+    listeners.forEach((l) => l());
+  }
+
+  const Store = {
+    get: () => state,
+    subscribe(fn) { listeners.add(fn); return () => listeners.delete(fn); },
+    openAuth(mode, intent) { set({ authMode: mode || 'signin', authIntent: intent || null }); },
+    closeAuth() { set({ authMode: null }); },
+    signIn(user) {
+      const full = { city: 'Brooklyn, NY', bio: '', hue: 265, joined: 'June 2026', ...user };
+      const intent = state.authIntent;
+      set({ user: full, authMode: null, authIntent: null });
+      if (intent) window.navigate(intent);
+    },
+    signOut() { set({ user: null }); window.navigate('/'); },
+    updateProfile(patch) { set((s) => ({ user: { ...s.user, ...patch } })); },
+    isSaved(id) { return state.saved.includes(id); },
+    toggleSave(id) {
+      set((s) => ({ saved: s.saved.includes(id) ? s.saved.filter((x) => x !== id) : [id, ...s.saved] }));
+    },
+    addBooking(b) {
+      const booking = {
+        id: 'bk-' + Math.random().toString(36).slice(2, 8),
+        confirmation: 'IP-' + Math.floor(Math.random() * 900000 + 100000),
+        status: 'upcoming', booked: Date.now(), ...b,
+      };
+      set((s) => ({ bookings: [booking, ...s.bookings] }));
+      return booking;
+    },
+    cancelBooking(id) {
+      set((s) => ({ bookings: s.bookings.map((b) => b.id === id ? { ...b, status: 'cancelled' } : b) }));
+    },
+    sendMessage(threadId, text) {
+      const when = new Date().toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit' });
+      set((s) => ({
+        threads: s.threads.map((th) => th.id === threadId
+          ? { ...th, msgs: [...th.msgs, { from: 'me', t: text, when }] } : th),
+      }));
+    },
+  };
+  window.Store = Store;
+
+  function useStore() {
+    const [, force] = useReducer((x) => x + 1, 0);
+    useEffect(() => Store.subscribe(force), []);
+    return Store.get();
+  }
+  window.useStore = useStore;
+
+  // ─── Hash router ────────────────────────────────────────────────────────────
+  function parseHash() {
+    let raw = (window.location.hash || '').replace(/^#/, '');
+    if (!raw) raw = '/';
+    if (!raw.startsWith('/')) raw = '/' + raw;
+    const [path, qs] = raw.split('?');
+    const query = Object.fromEntries(new URLSearchParams(qs || ''));
+    const parts = path.split('/').filter(Boolean);
+    return { path, parts, query, raw };
+  }
+  window.navigate = function (to, opts) {
+    const hash = '#' + to;
+    if (opts && opts.replace) {
+      const url = window.location.pathname + window.location.search + hash;
+      window.history.replaceState(null, '', url);
+      window.dispatchEvent(new HashChangeEvent('hashchange'));
+    } else {
+      window.location.hash = to;
+    }
+  };
+  window.useRoute = function () {
+    const [route, setRoute] = useState(parseHash);
+    useEffect(() => {
+      const on = () => setRoute(parseHash());
+      window.addEventListener('hashchange', on);
+      return () => window.removeEventListener('hashchange', on);
+    }, []);
+    return route;
+  };
+
+  // <Link to="/path"> — real anchor so cmd-click / share works
+  window.Link = function ({ to, children, style, className, onClick, ...rest }) {
+    return React.createElement('a', {
+      href: '#' + to, style, className, ...rest,
+      onClick: (e) => { if (onClick) onClick(e); },
+    }, children);
+  };
+
+  // ─── Theme context (brand accent + heading font from Tweaks) ────────────────
+  const ThemeCtx = createContext({ brand: '#7F56D9', fontHeading: "'Fraunces', serif" });
+  window.ThemeCtx = ThemeCtx;
+  window.useTheme = () => useContext(ThemeCtx);
+
+  // ─── Helpers ────────────────────────────────────────────────────────────────
+  window.fmtDate = (dateStr, opts) =>
+    new Date(dateStr + 'T00:00').toLocaleDateString('en-US', opts || { month: 'long', day: 'numeric' });
+  window.classById = (id) => (window.CLASSES || []).find((c) => c.id === id);
+})();
+
+</script>
+
+<!-- shared.jsx -->
+<script type="text/babel" data-presets="react">
+// shared.jsx — app shell: Header, Footer, Btn, layout + section primitives
+(function () {
+  const { useState, useEffect, useRef } = React;
+
+  // ─── Logo ────────────────────────────────────────────────────────────────────
+  const Logo = ({ brand = '#7F56D9', size = 32 }) => (
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="5" fill={brand} opacity="0.92" />
+      <rect x="11" y="11" width="18" height="18" rx="5" fill="#101828" />
+      <circle cx="20" cy="20" r="2.6" fill="#FFF" />
+    </svg>
+  );
+  window.Logo = Logo;
+
+  // ─── Button ──────────────────────────────────────────────────────────────────
+  const Btn = ({ variant = 'primary', size = 'md', to, onClick, children, full, style, brand, ...rest }) => {
+    const theme = window.useTheme();
+    const accent = brand || theme.brand;
+    const pad = size === 'lg' ? '14px 24px' : size === 'sm' ? '8px 14px' : '11px 18px';
+    const fs = size === 'lg' ? 16 : size === 'sm' ? 14 : 15;
+    const variants = {
+      primary: { background: accent, color: '#FFF', border: '1px solid transparent', boxShadow: '0px 1px 2px rgba(16,24,40,0.05)' },
+      dark: { background: '#101828', color: '#FFF', border: '1px solid transparent' },
+      secondary: { background: '#FFF', color: '#344054', border: '1px solid #D0D5DD' },
+      ghost: { background: 'transparent', color: '#344054', border: '1px solid transparent' },
+      light: { background: '#F9F5FF', color: accent, border: '1px solid transparent' },
+    };
+    const s = {
+      appearance: 'none', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600,
+      fontSize: fs, padding: pad, borderRadius: 10, textDecoration: 'none',
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+      width: full ? '100%' : 'auto', whiteSpace: 'nowrap', transition: 'filter .15s, background .15s',
+      ...variants[variant], ...style,
+    };
+    const handle = (e) => { if (onClick) onClick(e); if (to) window.navigate(to); };
+    return (
+      <button type="button" style={s} onClick={handle}
+        onMouseEnter={(e) => (e.currentTarget.style.filter = 'brightness(0.96)')}
+        onMouseLeave={(e) => (e.currentTarget.style.filter = 'none')} {...rest}>
+        {children}
+      </button>
+    );
+  };
+  window.Btn = Btn;
+
+  // ─── Layout primitives ───────────────────────────────────────────────────────
+  const Container = ({ children, w = 1200, style }) => (
+    <div style={{ maxWidth: w, margin: '0 auto', padding: '0 32px', ...style }}>{children}</div>
+  );
+  window.Container = Container;
+
+  // Generic page hero band (eyebrow / title / subtitle), used across marketing pages
+  const PageHero = ({ eyebrow, title, sub, children, tint = '#FAF7FF', align = 'left', max = 720 }) => {
+    const { brand, fontHeading } = window.useTheme();
+    return (
+      <section style={{ background: `linear-gradient(180deg, ${tint} 0%, #FFFFFF 100%)`, borderBottom: '1px solid #F2F4F7' }}>
+        <Container style={{ padding: '64px 32px 56px', textAlign: align }}>
+          <div style={{ maxWidth: max, margin: align === 'center' ? '0 auto' : 0 }}>
+            {eyebrow && (
+              <div style={{ fontSize: 14, fontWeight: 600, color: brand, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 16 }}>{eyebrow}</div>
+            )}
+            <h1 style={{ fontFamily: fontHeading, fontSize: 'clamp(34px, 4.6vw, 56px)', lineHeight: 1.05, letterSpacing: '-0.025em', color: '#101828', margin: 0, fontWeight: 600 }}>{title}</h1>
+            {sub && <p style={{ fontSize: 20, lineHeight: 1.55, color: '#475467', margin: '20px 0 0', maxWidth: 620, marginLeft: align === 'center' ? 'auto' : 0, marginRight: align === 'center' ? 'auto' : 0 }}>{sub}</p>}
+            {children && <div style={{ marginTop: 32 }}>{children}</div>}
+          </div>
+        </Container>
+      </section>
+    );
+  };
+  window.PageHero = PageHero;
+
+  const SectionHead = ({ eyebrow, title, sub, align = 'left' }) => {
+    const { brand, fontHeading } = window.useTheme();
+    return (
+      <div style={{ textAlign: align, maxWidth: align === 'center' ? 640 : 'none', margin: align === 'center' ? '0 auto 40px' : '0 0 32px' }}>
+        {eyebrow && <div style={{ fontSize: 14, fontWeight: 600, color: brand, letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: 10 }}>{eyebrow}</div>}
+        <h2 style={{ fontFamily: fontHeading, fontSize: 'clamp(26px, 3vw, 36px)', fontWeight: 600, color: '#101828', margin: 0, letterSpacing: '-0.02em', lineHeight: 1.15 }}>{title}</h2>
+        {sub && <p style={{ fontSize: 18, lineHeight: 1.55, color: '#475467', margin: '14px 0 0' }}>{sub}</p>}
+      </div>
+    );
+  };
+  window.SectionHead = SectionHead;
+
+  // ─── Header ──────────────────────────────────────────────────────────────────
+  const NAV = [
+    { label: 'Browse', to: '/' },
+    { label: 'Gift cards', to: '/gift-cards' },
+    { label: 'Teach a class', to: '/teach' },
+    { label: 'Help', to: '/help' },
+  ];
+
+  const Header = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const { user, saved, threads } = window.useStore();
+    const route = window.useRoute();
+    const [menu, setMenu] = useState(false);
+    const ref = useRef(null);
+    useEffect(() => {
+      const h = (e) => { if (ref.current && !ref.current.contains(e.target)) setMenu(false); };
+      document.addEventListener('mousedown', h);
+      return () => document.removeEventListener('mousedown', h);
+    }, []);
+    const isActive = (to) => to === '/' ? (route.path === '/' || route.parts[0] === 'class') : route.path.startsWith(to);
+
+    return (
+      <header style={{ position: 'sticky', top: 0, zIndex: 40, background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)', borderBottom: '1px solid #EAECF0', height: 72 }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%', gap: 24 }}>
+          <button onClick={() => window.navigate('/')} style={{ appearance: 'none', border: 0, background: 'transparent', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+            <Logo brand={brand} />
+            <span style={{ fontFamily: fontHeading, fontSize: 22, fontWeight: 600, letterSpacing: '-0.02em', color: '#101828' }}>InPerson</span>
+          </button>
+
+          <nav style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+            {NAV.map((n) => (
+              <a key={n.to} href={'#' + n.to} style={{ fontSize: 15, color: isActive(n.to) ? '#101828' : '#475467', textDecoration: 'none', cursor: 'pointer', fontWeight: isActive(n.to) ? 600 : 500 }}>{n.label}</a>
+            ))}
+          </nav>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+            {!user && (
+              <>
+                <Btn variant="ghost" onClick={() => window.Store.openAuth('signin')}>Sign in</Btn>
+                <Btn variant="primary" onClick={() => window.Store.openAuth('signup')}>Get started</Btn>
+              </>
+            )}
+            {user && (
+              <>
+                <IconBubble label="Saved" count={saved.length} onClick={() => window.navigate('/account/saved')}>
+                  <Icon.heart size={20} />
+                </IconBubble>
+                <IconBubble label="Messages" count={threads.reduce((n, t) => n + (t.msgs.some((m) => m.from === 'them') ? 1 : 0), 0)} onClick={() => window.navigate('/account/messages')}>
+                  <Icon.message size={20} />
+                </IconBubble>
+                <div ref={ref} style={{ position: 'relative' }}>
+                  <button onClick={() => setMenu((m) => !m)} style={{ appearance: 'none', border: '1px solid #EAECF0', background: '#FFF', borderRadius: 999, padding: '4px 6px 4px 12px', display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+                    <Icon.menu size={16} stroke="#475467" />
+                    <Avatar name={user.name} hue={user.hue} size={30} />
+                  </button>
+                  {menu && <AccountMenu user={user} brand={brand} onClose={() => setMenu(false)} />}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </header>
+    );
+  };
+  window.Header = Header;
+
+  const IconBubble = ({ children, label, count, onClick }) => (
+    <button aria-label={label} onClick={onClick} style={{ position: 'relative', width: 40, height: 40, borderRadius: 999, border: '1px solid #EAECF0', background: '#FFF', color: '#344054', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {children}
+      {count > 0 && (
+        <span style={{ position: 'absolute', top: -4, right: -4, minWidth: 16, height: 16, padding: '0 4px', borderRadius: 999, background: '#D92D20', color: '#FFF', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid #FFF' }}>{count}</span>
+      )}
+    </button>
+  );
+
+  const AccountMenu = ({ user, brand, onClose }) => {
+    const go = (to) => { onClose(); window.navigate(to); };
+    const items = [
+      { label: 'Dashboard', to: '/account', icon: <Icon.sparkle size={17} /> },
+      { label: 'My classes', to: '/account/classes', icon: <Icon.ticket size={17} /> },
+      { label: 'Saved', to: '/account/saved', icon: <Icon.heart size={17} /> },
+      { label: 'Messages', to: '/account/messages', icon: <Icon.message size={17} /> },
+      { label: 'Profile & settings', to: '/account/profile', icon: <Icon.settings size={17} /> },
+    ];
+    return (
+      <div style={{ position: 'absolute', right: 0, top: 'calc(100% + 8px)', width: 248, background: '#FFF', border: '1px solid #EAECF0', borderRadius: 14, boxShadow: '0px 12px 32px -8px rgba(16,24,40,0.18)', padding: 8, zIndex: 50 }}>
+        <div style={{ padding: '8px 10px 12px', borderBottom: '1px solid #F2F4F7', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <Avatar name={user.name} hue={user.hue} size={40} />
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontSize: 14, fontWeight: 600, color: '#101828', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user.name}</div>
+            <div style={{ fontSize: 12, color: '#667085', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user.email}</div>
+          </div>
+        </div>
+        {items.map((it) => (
+          <button key={it.to} onClick={() => go(it.to)} style={menuItem}><span style={{ color: '#667085', display: 'flex' }}>{it.icon}</span>{it.label}</button>
+        ))}
+        <div style={{ borderTop: '1px solid #F2F4F7', margin: '6px 0 0', paddingTop: 6 }}>
+          <button onClick={() => { onClose(); window.Store.signOut(); }} style={menuItem}><span style={{ color: '#667085', display: 'flex' }}><Icon.logout size={17} /></span>Sign out</button>
+        </div>
+      </div>
+    );
+  };
+  const menuItem = { width: '100%', appearance: 'none', border: 0, background: 'transparent', textAlign: 'left', padding: '9px 10px', borderRadius: 8, fontSize: 14, fontWeight: 500, color: '#344054', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 10 };
+
+  // ─── Footer ──────────────────────────────────────────────────────────────────
+  const FOOTER_COLS = [
+    { h: 'Explore', items: [
+      { label: 'Food & drink', to: '/?cat=food' }, { label: 'Craft & making', to: '/?cat=craft' },
+      { label: 'Outdoors', to: '/?cat=outdoor' }, { label: 'Shop & repair', to: '/?cat=shop' }, { label: 'Art & design', to: '/?cat=art' } ] },
+    { h: 'Instructors', items: [
+      { label: 'Start teaching', to: '/teach' }, { label: 'Pricing', to: '/pricing' },
+      { label: 'Instructor handbook', to: '/handbook' }, { label: 'Insurance', to: '/insurance' } ] },
+    { h: 'Company', items: [
+      { label: 'About', to: '/about' }, { label: 'Press', to: '/press' },
+      { label: 'Careers', to: '/careers' }, { label: 'Blog', to: '/blog' } ] },
+    { h: 'Support', items: [
+      { label: 'Help center', to: '/help' }, { label: 'Trust & safety', to: '/trust' },
+      { label: 'Cancellations', to: '/cancellations' }, { label: 'Contact', to: '/contact' } ] },
+  ];
+
+  const Footer = () => {
+    const { fontHeading } = window.useTheme();
+    return (
+      <footer style={{ background: '#101828', color: '#D0D5DD', padding: '64px 0 32px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', gap: 40, marginBottom: 48 }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+                <Logo brand="#D6BBFB" />
+                <span style={{ fontFamily: fontHeading, fontSize: 22, fontWeight: 600, color: '#FFF', letterSpacing: '-0.02em' }}>InPerson</span>
+              </div>
+              <p style={{ fontSize: 14, lineHeight: 1.6, color: '#98A2B3', maxWidth: 320, margin: '0 0 20px' }}>
+                A neighborhood-scale marketplace for people who teach with their hands and people who learn best by doing.
+              </p>
+              <div style={{ display: 'flex', gap: 10 }}>
+                {['globe', 'message', 'mail'].map((k) => (
+                  <a key={k} href="#/contact" style={{ width: 36, height: 36, borderRadius: 8, border: '1px solid #1D2939', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#98A2B3', textDecoration: 'none' }}>{Icon[k]({ size: 18 })}</a>
+                ))}
+              </div>
+            </div>
+            {FOOTER_COLS.map((col) => (
+              <div key={col.h}>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#FFF', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 16 }}>{col.h}</div>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {col.items.map((i) => (
+                    <li key={i.label}><a href={'#' + i.to} style={{ color: '#98A2B3', textDecoration: 'none', fontSize: 14, cursor: 'pointer' }}>{i.label}</a></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div style={{ paddingTop: 24, borderTop: '1px solid #1D2939', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16, fontSize: 13, color: '#667085' }}>
+            <span>© 2026 InPerson, PBC · Brooklyn, NY</span>
+            <span style={{ display: 'flex', gap: 16 }}>
+              <a href="#/trust" style={{ color: '#667085', textDecoration: 'none' }}>Privacy</a>
+              <a href="#/trust" style={{ color: '#667085', textDecoration: 'none' }}>Terms</a>
+              <a href="#/help" style={{ color: '#667085', textDecoration: 'none' }}>Sitemap</a>
+            </span>
+          </div>
+        </div>
+      </footer>
+    );
+  };
+  window.Footer = Footer;
+})();
+
+</script>
+
 <!-- browse.jsx -->
 <script type="text/babel" data-presets="react">
 // browse.jsx — browse / marketplace page
@@ -666,7 +1087,8 @@ const SearchField = ({ icon, label, placeholder, value, onChange }) => (
 // --- Class card ----------------------------------------------------------
 
 const ClassCard = ({ cls, layout, brand, onOpen }) => {
-  const [fav, setFav] = useState(false);
+  const store = window.useStore();
+  const fav = store.saved.includes(cls.id);
   const horizontal = layout === 'list';
 
   const thumb = (
@@ -678,8 +1100,9 @@ const ClassCard = ({ cls, layout, brand, onOpen }) => {
       <Pattern kind={cls.pattern} color={cls.color} accent={cls.accent}/>
       <button
         type="button"
-        onClick={(e) => { e.stopPropagation(); setFav(!fav); }}
+        onClick={(e) => { e.stopPropagation(); window.Store.toggleSave(cls.id); }}
         aria-label="Save class"
+        title={fav ? 'Saved' : 'Save'}
         style={{
           position: 'absolute', top: 12, right: 12,
           width: 36, height: 36, borderRadius: '50%',
@@ -745,10 +1168,16 @@ window.ClassCard = ClassCard;
 
 // --- Page ----------------------------------------------------------------
 
-const BrowsePage = ({ classes, onOpen, layout, brand, fontHeading }) => {
-  const [cat, setCat] = useState('all');
+const BrowsePage = ({ classes, onOpen, layout, brand, fontHeading, routeCat }) => {
+  const [cat, setCat] = useState(routeCat || 'all');
   const [search, setSearch] = useState({ q: '', city: '', when: '' });
   const [sort, setSort] = useState('Recommended');
+
+  useEffect(() => { setCat(routeCat || 'all'); }, [routeCat]);
+  const chooseCat = (id) => {
+    setCat(id);
+    window.navigate(id === 'all' ? '/' : '/?cat=' + id);
+  };
 
   const filtered = useMemo(() => {
     return classes.filter(c => {
@@ -770,7 +1199,7 @@ const BrowsePage = ({ classes, onOpen, layout, brand, fontHeading }) => {
           display: 'flex', gap: 8, alignItems: 'center', overflowX: 'auto',
         }}>
           {window.CATEGORIES.map(c => (
-            <Pill key={c.id} active={cat === c.id} color={brand} onClick={() => setCat(c.id)}>{c.label}</Pill>
+            <Pill key={c.id} active={cat === c.id} color={brand} onClick={() => chooseCat(c.id)}>{c.label}</Pill>
           ))}
           <div style={{ flex: 1 }}/>
           <button style={{
@@ -895,7 +1324,12 @@ window.BrowsePage = BrowsePage;
 const DetailPage = ({ cls, onBack, onBook, brand, fontHeading }) => {
   const [selectedSlot, setSelectedSlot] = useState(cls.schedule.find(s => s.seats > 0));
   const [seats, setSeats] = useState(1);
-  const [fav, setFav] = useState(false);
+  const store = window.useStore();
+  const fav = store.saved.includes(cls.id);
+  const messageHost = () => {
+    if (store.user) window.navigate('/account/messages');
+    else window.Store.openAuth('signin', '/account/messages');
+  };
 
   const tones = useMemo(() => {
     const accent = cls.accent;
@@ -930,7 +1364,7 @@ const DetailPage = ({ cls, onBack, onBook, brand, fontHeading }) => {
             </span>
           </div>
           <div style={{ display: 'flex', gap: 4 }}>
-            <button style={iconBtn} onClick={() => setFav(!fav)}>
+            <button style={iconBtn} onClick={() => window.Store.toggleSave(cls.id)}>
               {fav
                 ? <Icon.heart size={16} fill="#D92D20" stroke="#D92D20"/>
                 : <Icon.heart size={16}/>}
@@ -1001,7 +1435,7 @@ const DetailPage = ({ cls, onBack, onBook, brand, fontHeading }) => {
                 padding: '10px 16px', borderRadius: 10, fontSize: 14, fontWeight: 600,
                 fontFamily: 'inherit', cursor: 'pointer', color: '#344054',
                 display: 'flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap',
-              }}><Icon.message size={16}/> Message</button>
+              }} onClick={messageHost}><Icon.message size={16}/> Message</button>
             </div>
           </section>
 
@@ -1286,7 +1720,17 @@ const BookingFlow = ({ ctx, onClose, brand, fontHeading }) => {
 
   const goNext = () => {
     if (step === STEPS.length - 2) {
-      // simulate processing
+      // record the booking into the session (sign the user in if needed)
+      if (!window.Store.get().user) {
+        window.Store.signIn({
+          name: form.name || (form.email ? form.email.split('@')[0] : 'Member'),
+          email: (form.email || 'member@example.com').toLowerCase(), hue: 265,
+        });
+      }
+      if (slot) window.Store.addBooking({
+        classId: cls.id, day: slot.day, date: slot.date, time: slot.time,
+        seats, total,
+      });
       setStep(STEPS.length - 1);
     } else {
       setStep(s => Math.min(STEPS.length - 1, s + 1));
@@ -1583,174 +2027,1495 @@ window.BookingFlow = BookingFlow;
 
 </script>
 
-<!-- app.jsx -->
+<!-- auth.jsx -->
 <script type="text/babel" data-presets="react">
-// app.jsx — root InPerson app
+// auth.jsx — sign in / sign up modal driven by Store.authMode
+(function () {
+  const { useState, useEffect } = React;
 
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "accent": "#7F56D9",
-  "fontHeading": "'Fraunces', 'Times New Roman', serif",
-  "cardLayout": "grid"
-}/*EDITMODE-END*/;
+  function nameFromEmail(email) {
+    const base = (email.split('@')[0] || 'there').replace(/[._-]+/g, ' ');
+    return base.split(' ').filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(' ') || 'Member';
+  }
+  function hueFromString(s) {
+    let h = 0;
+    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360;
+    return h;
+  }
 
+  const AuthModal = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const { authMode } = window.useStore();
+    const [mode, setMode] = useState('signin');
+    const [f, setF] = useState({ name: '', email: '', password: '' });
+    const [err, setErr] = useState('');
+    useEffect(() => { if (authMode) { setMode(authMode); setErr(''); } }, [authMode]);
+    useEffect(() => {
+      const h = (e) => e.key === 'Escape' && window.Store.closeAuth();
+      window.addEventListener('keydown', h);
+      return () => window.removeEventListener('keydown', h);
+    }, []);
+    if (!authMode) return null;
+    const up = (k, v) => setF((s) => ({ ...s, [k]: v }));
+    const submit = () => {
+      if (!f.email.includes('@') || f.password.length < 4 || (mode === 'signup' && !f.name.trim())) {
+        setErr('Enter a name, a valid email, and a password (4+ characters).'); return;
+      }
+      const name = mode === 'signup' ? f.name.trim() : nameFromEmail(f.email);
+      window.Store.signIn({ name, email: f.email.toLowerCase(), hue: hueFromString(f.email) });
+    };
+    const isUp = mode === 'signup';
 
-
-
-const Header = ({ brand, fontHeading, onLogo }) => (
-  <header style={{
-    position: 'sticky', top: 0, zIndex: 10, background: 'rgba(255,255,255,0.92)',
-    backdropFilter: 'blur(8px)', borderBottom: '1px solid #EAECF0', height: 72,
-  }}>
-    <div style={{
-      maxWidth: 1200, margin: '0 auto', padding: '0 32px',
-      display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '100%',
-    }}>
-      <button onClick={onLogo} style={{
-        appearance: 'none', border: 0, background: 'transparent', padding: 0,
-        cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10,
-      }}>
-        <Logo brand={brand}/>
-        <span style={{
-          fontFamily: fontHeading, fontSize: 22, fontWeight: 600,
-          letterSpacing: '-0.02em', color: '#101828',
-        }}>InPerson</span>
-      </button>
-      <nav style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
-        <a style={navLink}>Browse</a>
-        <a style={navLink}>Gift cards</a>
-        <a style={navLink}>Teach a class</a>
-        <a style={navLink}>Help</a>
-      </nav>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <button style={{
-          appearance: 'none', border: 0, background: 'transparent',
-          padding: '8px 12px', borderRadius: 8, cursor: 'pointer',
-          fontSize: 14, fontWeight: 500, color: '#344054', fontFamily: 'inherit',
-        }}>Sign in</button>
-        <button style={{
-          appearance: 'none', border: 0, background: brand, color: '#FFF',
-          padding: '10px 18px', borderRadius: 10, cursor: 'pointer',
-          fontSize: 14, fontWeight: 600, fontFamily: 'inherit',
-          boxShadow: '0px 1px 2px rgba(16,24,40,0.05)',
-        }}>Get started</button>
-      </div>
-    </div>
-  </header>
-);
-
-const navLink = {
-  fontSize: 15, color: '#344054', textDecoration: 'none', cursor: 'pointer',
-  fontWeight: 500,
-};
-
-const Logo = ({ brand }) => (
-  // simple geometric mark — two overlapping rounded squares suggesting "in person"
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-    <rect x="3" y="3" width="18" height="18" rx="5" fill={brand} opacity="0.92"/>
-    <rect x="11" y="11" width="18" height="18" rx="5" fill="#101828"/>
-    <circle cx="20" cy="20" r="2.6" fill="#FFF"/>
-  </svg>
-);
-
-const Footer = ({ fontHeading }) => (
-  <footer style={{ background: '#101828', color: '#D0D5DD', padding: '64px 0 32px' }}>
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px' }}>
-      <div style={{
-        display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', gap: 40, marginBottom: 48,
-      }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-            <Logo brand="#D6BBFB"/>
-            <span style={{
-              fontFamily: fontHeading, fontSize: 22, fontWeight: 600,
-              color: '#FFF', letterSpacing: '-0.02em',
-            }}>InPerson</span>
+    return (
+      <div onClick={() => window.Store.closeAuth()} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(16,24,40,0.65)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, animation: 'fadein .2s ease' }}>
+        <div onClick={(e) => e.stopPropagation()} style={{ background: '#FFF', borderRadius: 20, width: '100%', maxWidth: 880, overflow: 'hidden', display: 'grid', gridTemplateColumns: '1fr 1fr', boxShadow: '0px 24px 48px -12px rgba(16,24,40,0.25)', animation: 'rise .25s cubic-bezier(.2,.7,.1,1)' }}>
+          {/* Brand panel */}
+          <div style={{ position: 'relative', padding: 36, color: '#FFF', background: `linear-gradient(150deg, ${brand} 0%, #101828 130%)`, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 520 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <Logo brand="#FFF" /><span style={{ fontFamily: fontHeading, fontSize: 22, fontWeight: 600 }}>InPerson</span>
+            </div>
+            <div>
+              <Icon.quote size={36} stroke="rgba(255,255,255,0.55)" />
+              <p style={{ fontFamily: fontHeading, fontSize: 24, lineHeight: 1.35, fontWeight: 500, margin: '14px 0 18px', letterSpacing: '-0.01em' }}>
+                "I came alone, left with two new friends and a mug I actually made with my hands."
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <Avatar name="Lin Wei" hue={160} size={36} />
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 600 }}>Lin Wei</div>
+                  <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Member since 2025</div>
+                </div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: 20, fontSize: 13, color: 'rgba(255,255,255,0.85)' }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Icon.users size={16} /> 9,400+ classes</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Icon.shield size={16} /> Vetted hosts</span>
+            </div>
           </div>
-          <p style={{ fontSize: 14, lineHeight: 1.6, color: '#98A2B3', maxWidth: 320, margin: 0 }}>
-            A neighborhood-scale marketplace for people who teach with their hands and people who learn best by doing.
-          </p>
-        </div>
-        {[
-          { h: 'Explore', items: ['Food & drink', 'Craft & making', 'Outdoors', 'Shop & repair', 'Art & design'] },
-          { h: 'Instructors', items: ['Start teaching', 'Pricing', 'Instructor handbook', 'Insurance'] },
-          { h: 'Company', items: ['About', 'Press', 'Careers', 'Blog'] },
-          { h: 'Support', items: ['Help center', 'Trust & safety', 'Cancellations', 'Contact'] },
-        ].map(col => (
-          <div key={col.h}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: '#FFF', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 16 }}>{col.h}</div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {col.items.map(i => (
-                <li key={i}><a style={{ color: '#98A2B3', textDecoration: 'none', fontSize: 14, cursor: 'pointer' }}>{i}</a></li>
+
+          {/* Form panel */}
+          <div style={{ padding: 36, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+              <button onClick={() => window.Store.closeAuth()} style={{ appearance: 'none', border: 0, background: '#F9FAFB', width: 34, height: 34, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#475467' }}><Icon.x size={18} /></button>
+            </div>
+            <h2 style={{ fontFamily: fontHeading, fontSize: 28, fontWeight: 600, color: '#101828', margin: '0 0 6px', letterSpacing: '-0.02em' }}>{isUp ? 'Create your account' : 'Welcome back'}</h2>
+            <p style={{ fontSize: 15, color: '#667085', margin: '0 0 22px' }}>{isUp ? 'Book classes, save favorites, message hosts.' : 'Sign in to pick up where you left off.'}</p>
+
+            <div style={{ display: 'flex', gap: 10, marginBottom: 18 }}>
+              {['Google', 'Apple'].map((p) => (
+                <button key={p} onClick={() => window.Store.signIn({ name: 'Alex Rivera', email: 'alex@example.com', hue: 265 })} style={{ flex: 1, appearance: 'none', border: '1px solid #D0D5DD', background: '#FFF', borderRadius: 10, padding: '10px', fontSize: 14, fontWeight: 600, color: '#344054', cursor: 'pointer', fontFamily: 'inherit' }}>Continue with {p}</button>
               ))}
-            </ul>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '0 0 18px', color: '#98A2B3', fontSize: 13 }}>
+              <div style={{ flex: 1, height: 1, background: '#EAECF0' }} /> or <div style={{ flex: 1, height: 1, background: '#EAECF0' }} />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {isUp && <AuthField label="Full name" value={f.name} onChange={(v) => up('name', v)} placeholder="Alex Rivera" />}
+              <AuthField label="Email" value={f.email} onChange={(v) => up('email', v)} placeholder="you@example.com" type="email" />
+              <AuthField label="Password" value={f.password} onChange={(v) => up('password', v)} placeholder="••••••••" type="password" onEnter={submit} />
+            </div>
+            {err && <div style={{ fontSize: 13, color: '#D92D20', marginTop: 10 }}>{err}</div>}
+
+            <Btn variant="primary" full size="lg" style={{ marginTop: 20 }} onClick={submit}>{isUp ? 'Create account' : 'Sign in'}</Btn>
+
+            <div style={{ fontSize: 14, color: '#667085', textAlign: 'center', marginTop: 18 }}>
+              {isUp ? 'Already a member?' : "Don't have an account?"}{' '}
+              <button onClick={() => setMode(isUp ? 'signin' : 'signup')} style={{ appearance: 'none', border: 0, background: 'transparent', color: brand, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14 }}>{isUp ? 'Sign in' : 'Sign up free'}</button>
+            </div>
           </div>
-        ))}
+        </div>
       </div>
-      <div style={{
-        paddingTop: 24, borderTop: '1px solid #1D2939',
-        display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16,
-        fontSize: 13, color: '#667085',
-      }}>
-        <span>© 2026 InPerson, PBC · Brooklyn, NY</span>
-        <span>Privacy · Terms · Sitemap</span>
+    );
+  };
+
+  const AuthField = ({ label, value, onChange, placeholder, type = 'text', onEnter }) => (
+    <label style={{ display: 'block' }}>
+      <span style={{ display: 'block', fontSize: 14, fontWeight: 500, color: '#344054', marginBottom: 6 }}>{label}</span>
+      <input value={value} type={type} placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        onKeyDown={(e) => { if (e.key === 'Enter' && onEnter) onEnter(); }}
+        style={{ width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #D0D5DD', fontSize: 16, fontFamily: 'inherit', color: '#101828', outline: 'none', boxSizing: 'border-box' }} />
+    </label>
+  );
+
+  window.AuthModal = AuthModal;
+})();
+
+</script>
+
+<!-- account.jsx -->
+<script type="text/babel" data-presets="react">
+// account.jsx — signed-in member area (dashboard, classes, saved, messages, profile)
+(function () {
+  const { useState } = React;
+
+  const SUB = [
+    { key: '', label: 'Dashboard', icon: 'sparkle' },
+    { key: 'classes', label: 'My classes', icon: 'ticket' },
+    { key: 'saved', label: 'Saved', icon: 'heart' },
+    { key: 'messages', label: 'Messages', icon: 'message' },
+    { key: 'profile', label: 'Profile & settings', icon: 'settings' },
+  ];
+
+  const AccountPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const store = window.useStore();
+    const route = window.useRoute();
+    const sub = route.parts[1] || '';
+
+    if (!store.user) return <AuthGate brand={brand} fontHeading={fontHeading} />;
+
+    return (
+      <Container style={{ padding: '40px 32px 80px', display: 'grid', gridTemplateColumns: '248px 1fr', gap: 48, alignItems: 'start' }}>
+        <aside style={{ position: 'sticky', top: 96 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '4px 4px 20px' }}>
+            <Avatar name={store.user.name} hue={store.user.hue} size={48} />
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: 15, fontWeight: 600, color: '#101828', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{store.user.name}</div>
+              <div style={{ fontSize: 13, color: '#667085' }}>Member · {store.user.joined}</div>
+            </div>
+          </div>
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {SUB.map((s) => {
+              const active = s.key === sub;
+              const count = s.key === 'saved' ? store.saved.length : s.key === 'messages' ? store.threads.length : 0;
+              return (
+                <button key={s.key} onClick={() => window.navigate('/account' + (s.key ? '/' + s.key : ''))}
+                  style={{ appearance: 'none', border: 0, background: active ? '#F9F5FF' : 'transparent', color: active ? brand : '#344054', textAlign: 'left', padding: '10px 12px', borderRadius: 10, fontSize: 15, fontWeight: active ? 600 : 500, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <span style={{ display: 'flex', color: active ? brand : '#667085' }}>{Icon[s.icon]({ size: 19 })}</span>
+                  <span style={{ flex: 1 }}>{s.label}</span>
+                  {count > 0 && <span style={{ fontSize: 12, color: '#667085' }}>{count}</span>}
+                </button>
+              );
+            })}
+          </nav>
+        </aside>
+
+        <div style={{ minWidth: 0 }}>
+          {sub === '' && <Dashboard store={store} brand={brand} fontHeading={fontHeading} />}
+          {sub === 'classes' && <MyClasses store={store} brand={brand} fontHeading={fontHeading} />}
+          {sub === 'saved' && <SavedList store={store} brand={brand} fontHeading={fontHeading} />}
+          {sub === 'messages' && <Messages store={store} brand={brand} fontHeading={fontHeading} />}
+          {sub === 'profile' && <Profile store={store} brand={brand} fontHeading={fontHeading} />}
+        </div>
+      </Container>
+    );
+  };
+
+  const H = (font, size = 28) => ({ fontFamily: font, fontSize: size, fontWeight: 600, color: '#101828', letterSpacing: '-0.02em', margin: 0 });
+
+  // ─── Dashboard ───────────────────────────────────────────────────────────────
+  const Dashboard = ({ store, brand, fontHeading }) => {
+    const upcoming = store.bookings.filter((b) => b.status === 'upcoming');
+    const next = upcoming[0];
+    const nextCls = next && window.classById(next.classId);
+    const recs = (window.CLASSES || []).filter((c) => !store.saved.includes(c.id)).slice(0, 3);
+    return (
+      <div>
+        <h1 style={H(fontHeading, 30)}>Hi {store.user.name.split(' ')[0]} 👋</h1>
+        <p style={{ fontSize: 16, color: '#667085', margin: '8px 0 28px' }}>Here's what's coming up.</p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 32 }}>
+          <Stat label="Upcoming classes" value={upcoming.length} icon="calendar" brand={brand} />
+          <Stat label="Saved" value={store.saved.length} icon="heart" brand={brand} />
+          <Stat label="Conversations" value={store.threads.length} icon="message" brand={brand} />
+        </div>
+
+        {nextCls ? (
+          <div style={{ borderRadius: 18, overflow: 'hidden', border: '1px solid #EAECF0', display: 'grid', gridTemplateColumns: '200px 1fr', marginBottom: 36 }}>
+            <div style={{ position: 'relative' }}><Pattern kind={nextCls.pattern} color={nextCls.color} accent={nextCls.accent} /></div>
+            <div style={{ padding: 24 }}>
+              <div style={{ fontSize: 12, fontWeight: 600, color: brand, textTransform: 'uppercase', letterSpacing: '0.06em' }}>Your next class</div>
+              <h3 style={{ ...H(fontHeading, 22), margin: '8px 0 6px' }}>{nextCls.title}</h3>
+              <p style={{ fontSize: 14, color: '#475467', margin: '0 0 16px' }}>{next.day}, {window.fmtDate(next.date)} · {next.time} · with {nextCls.instructor.name.split(' ')[0]}</p>
+              <div style={{ display: 'flex', gap: 10 }}>
+                <Btn variant="primary" size="sm" onClick={() => window.navigate('/class/' + nextCls.id)}>View details</Btn>
+                <Btn variant="secondary" size="sm" onClick={() => window.navigate('/account/messages')}>Message host</Btn>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <EmptyCard icon="calendar" title="No classes booked yet" body="Find something to make with your hands this weekend." cta="Browse classes" onCta={() => window.navigate('/')} brand={brand} fontHeading={fontHeading} />
+        )}
+
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 16 }}>
+          <h3 style={H(fontHeading, 20)}>Picked for you</h3>
+          <a href="#/" style={{ fontSize: 14, color: brand, fontWeight: 600, textDecoration: 'none' }}>See all</a>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          {recs.map((c) => <ClassCard key={c.id} cls={c} layout="compact" brand={brand} onOpen={() => window.navigate('/class/' + c.id)} />)}
+        </div>
       </div>
-    </div>
-  </footer>
-);
+    );
+  };
 
-// --- Root --------------------------------------------------------------
-
-const App = () => {
-  const [t] = React.useState(TWEAK_DEFAULTS);
-  const [view, setView] = useState({ name: 'browse', cls: null });
-  const [booking, setBooking] = useState(null);
-
-  // scroll to top on view changes
-  useEffect(() => { window.scrollTo(0, 0); }, [view.name, view.cls && view.cls.id]);
-
-  const openClass = (cls) => setView({ name: 'detail', cls });
-  const back = () => setView({ name: 'browse', cls: null });
-
-  return (
-    <div style={{ fontFamily: "'Inter', system-ui, -apple-system, sans-serif", color: '#101828', background: '#FFF', minHeight: '100vh' }}>
-      <Header brand={t.accent} fontHeading={t.fontHeading} onLogo={back}/>
-
-      {view.name === 'browse' && (
-        <BrowsePage
-          classes={window.CLASSES}
-          onOpen={openClass}
-          layout={t.cardLayout}
-          brand={t.accent}
-          fontHeading={t.fontHeading}
-        />
-      )}
-      {view.name === 'detail' && (
-        <DetailPage
-          cls={view.cls}
-          onBack={back}
-          onBook={setBooking}
-          brand={t.accent}
-          fontHeading={t.fontHeading}
-        />
-      )}
-
-      <Footer fontHeading={t.fontHeading}/>
-
-      {booking && (
-        <BookingFlow
-          ctx={booking}
-          onClose={() => setBooking(null)}
-          brand={t.accent}
-          fontHeading={t.fontHeading}
-        />
-      )}
-
+  const Stat = ({ label, value, icon, brand }) => (
+    <div style={{ border: '1px solid #EAECF0', borderRadius: 14, padding: 18 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span style={{ fontSize: 13, color: '#667085' }}>{label}</span>
+        <span style={{ color: brand }}>{Icon[icon]({ size: 18 })}</span>
+      </div>
+      <div style={{ fontSize: 30, fontWeight: 700, color: '#101828', marginTop: 6 }}>{value}</div>
     </div>
   );
-};
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App/>);
+  // ─── My classes ──────────────────────────────────────────────────────────────
+  const MyClasses = ({ store, brand, fontHeading }) => {
+    const [tab, setTab] = useState('upcoming');
+    const list = store.bookings.filter((b) => tab === 'upcoming' ? b.status === 'upcoming' : b.status === 'cancelled');
+    return (
+      <div>
+        <h1 style={H(fontHeading)}>My classes</h1>
+        <div style={{ display: 'flex', gap: 4, margin: '20px 0 24px', borderBottom: '1px solid #EAECF0' }}>
+          {[['upcoming', 'Upcoming'], ['cancelled', 'Cancelled']].map(([k, l]) => (
+            <button key={k} onClick={() => setTab(k)} style={{ appearance: 'none', border: 0, background: 'transparent', padding: '10px 4px', marginRight: 20, fontSize: 15, fontWeight: 600, fontFamily: 'inherit', cursor: 'pointer', color: tab === k ? '#101828' : '#667085', borderBottom: '2px solid ' + (tab === k ? brand : 'transparent'), marginBottom: -1 }}>{l}</button>
+          ))}
+        </div>
+        {list.length === 0 ? (
+          <EmptyCard icon="ticket" title={`No ${tab} classes`} body={tab === 'upcoming' ? 'When you book a class it shows up here.' : "You haven't cancelled anything."} cta="Browse classes" onCta={() => window.navigate('/')} brand={brand} fontHeading={fontHeading} />
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {list.map((b) => <BookingRow key={b.id} b={b} brand={brand} fontHeading={fontHeading} cancellable={tab === 'upcoming'} />)}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const BookingRow = ({ b, brand, fontHeading, cancellable }) => {
+    const cls = window.classById(b.classId);
+    if (!cls) return null;
+    return (
+      <div style={{ border: '1px solid #EAECF0', borderRadius: 16, padding: 16, display: 'grid', gridTemplateColumns: '96px 1fr auto', gap: 18, alignItems: 'center' }}>
+        <div style={{ width: 96, height: 96, borderRadius: 12, overflow: 'hidden' }}><Pattern kind={cls.pattern} color={cls.color} accent={cls.accent} /></div>
+        <div style={{ minWidth: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 12, fontWeight: 600, color: b.status === 'cancelled' ? '#B42318' : '#067647', background: b.status === 'cancelled' ? '#FEF3F2' : '#ECFDF3', padding: '2px 8px', borderRadius: 999 }}>{b.status === 'cancelled' ? 'Cancelled' : 'Confirmed'}</span>
+            <span style={{ fontSize: 12, color: '#98A2B3' }}>#{b.confirmation}</span>
+          </div>
+          <h3 style={{ ...H(fontHeading, 19), margin: '8px 0 4px' }}>{cls.title}</h3>
+          <p style={{ fontSize: 14, color: '#475467', margin: 0 }}>{b.day}, {window.fmtDate(b.date)} · {b.time} · {b.seats} {b.seats === 1 ? 'seat' : 'seats'} · ${b.total}</p>
+          <p style={{ fontSize: 13, color: '#667085', margin: '4px 0 0', display: 'flex', alignItems: 'center', gap: 5 }}><Icon.pin size={13} /> {cls.neighborhood}, {cls.city}</p>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'stretch' }}>
+          <Btn variant="secondary" size="sm" onClick={() => window.navigate('/class/' + cls.id)}>View</Btn>
+          {cancellable && <Btn variant="ghost" size="sm" style={{ color: '#B42318' }} onClick={() => window.Store.cancelBooking(b.id)}>Cancel</Btn>}
+        </div>
+      </div>
+    );
+  };
+
+  // ─── Saved ───────────────────────────────────────────────────────────────────
+  const SavedList = ({ store, brand, fontHeading }) => {
+    const list = store.saved.map(window.classById).filter(Boolean);
+    return (
+      <div>
+        <h1 style={H(fontHeading)}>Saved</h1>
+        <p style={{ fontSize: 16, color: '#667085', margin: '8px 0 24px' }}>{list.length} {list.length === 1 ? 'class' : 'classes'} you're keeping an eye on.</p>
+        {list.length === 0 ? (
+          <EmptyCard icon="heart" title="Nothing saved yet" body="Tap the heart on any class to keep it here." cta="Browse classes" onCta={() => window.navigate('/')} brand={brand} fontHeading={fontHeading} />
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 28 }}>
+            {list.map((c) => <ClassCard key={c.id} cls={c} layout="grid" brand={brand} onOpen={() => window.navigate('/class/' + c.id)} />)}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  // ─── Messages ────────────────────────────────────────────────────────────────
+  const Messages = ({ store, brand, fontHeading }) => {
+    const [active, setActive] = useState(store.threads[0] && store.threads[0].id);
+    const [draft, setDraft] = useState('');
+    const thread = store.threads.find((t) => t.id === active) || store.threads[0];
+    const send = () => { if (draft.trim() && thread) { window.Store.sendMessage(thread.id, draft.trim()); setDraft(''); } };
+    if (!store.threads.length) return <EmptyCard icon="message" title="No messages" body="Message a host from any class page." cta="Browse classes" onCta={() => window.navigate('/')} brand={brand} fontHeading={fontHeading} />;
+    return (
+      <div>
+        <h1 style={{ ...H(fontHeading), marginBottom: 20 }}>Messages</h1>
+        <div style={{ border: '1px solid #EAECF0', borderRadius: 16, overflow: 'hidden', display: 'grid', gridTemplateColumns: '280px 1fr', height: 560 }}>
+          <div style={{ borderRight: '1px solid #EAECF0', overflowY: 'auto' }}>
+            {store.threads.map((t) => (
+              <button key={t.id} onClick={() => setActive(t.id)} style={{ width: '100%', appearance: 'none', border: 0, borderBottom: '1px solid #F2F4F7', background: t.id === thread.id ? '#F9F5FF' : '#FFF', textAlign: 'left', padding: 14, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', gap: 12, alignItems: 'center' }}>
+                <Avatar name={t.who} hue={t.hue} size={40} />
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: '#101828' }}>{t.who}</div>
+                  <div style={{ fontSize: 13, color: '#667085', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.msgs[t.msgs.length - 1].t}</div>
+                </div>
+              </button>
+            ))}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ padding: '14px 18px', borderBottom: '1px solid #EAECF0', display: 'flex', alignItems: 'center', gap: 10 }}>
+              <Avatar name={thread.who} hue={thread.hue} size={36} />
+              <div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: '#101828' }}>{thread.who}</div>
+                <div style={{ fontSize: 13, color: '#667085' }}>{thread.classTitle}</div>
+              </div>
+            </div>
+            <div style={{ flex: 1, overflowY: 'auto', padding: 18, display: 'flex', flexDirection: 'column', gap: 12, background: '#FCFCFD' }}>
+              {thread.msgs.map((m, i) => (
+                <div key={i} style={{ alignSelf: m.from === 'me' ? 'flex-end' : 'flex-start', maxWidth: '72%' }}>
+                  <div style={{ padding: '10px 14px', borderRadius: 14, fontSize: 14, lineHeight: 1.45, background: m.from === 'me' ? brand : '#FFF', color: m.from === 'me' ? '#FFF' : '#101828', border: m.from === 'me' ? '0' : '1px solid #EAECF0', borderBottomRightRadius: m.from === 'me' ? 4 : 14, borderBottomLeftRadius: m.from === 'me' ? 14 : 4 }}>{m.t}</div>
+                  <div style={{ fontSize: 11, color: '#98A2B3', marginTop: 4, textAlign: m.from === 'me' ? 'right' : 'left' }}>{m.when}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ padding: 14, borderTop: '1px solid #EAECF0', display: 'flex', gap: 10 }}>
+              <input value={draft} onChange={(e) => setDraft(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && send()} placeholder="Write a message…" style={{ flex: 1, padding: '11px 14px', borderRadius: 10, border: '1px solid #D0D5DD', fontSize: 15, fontFamily: 'inherit', outline: 'none' }} />
+              <Btn variant="primary" onClick={send}>Send</Btn>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // ─── Profile ─────────────────────────────────────────────────────────────────
+  const Profile = ({ store, brand, fontHeading }) => {
+    const [f, setF] = useState({ name: store.user.name, email: store.user.email, city: store.user.city || '', bio: store.user.bio || '' });
+    const [saved, setSaved] = useState(false);
+    const up = (k, v) => { setF((s) => ({ ...s, [k]: v })); setSaved(false); };
+    const save = () => { window.Store.updateProfile(f); setSaved(true); };
+    return (
+      <div style={{ maxWidth: 620 }}>
+        <h1 style={H(fontHeading)}>Profile & settings</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '24px 0 28px' }}>
+          <Avatar name={f.name} hue={store.user.hue} size={72} />
+          <Btn variant="secondary" size="sm"><Icon.camera size={16} /> Change photo</Btn>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <PField label="Full name" value={f.name} onChange={(v) => up('name', v)} />
+          <PField label="City" value={f.city} onChange={(v) => up('city', v)} />
+          <PField label="Email" value={f.email} onChange={(v) => up('email', v)} span />
+          <PField label="About you" value={f.bio} onChange={(v) => up('bio', v)} placeholder="A line about what you like to make…" span area />
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 24 }}>
+          <Btn variant="primary" onClick={save}>Save changes</Btn>
+          {saved && <span style={{ fontSize: 14, color: '#067647', display: 'flex', alignItems: 'center', gap: 6 }}><Icon.checkCirc size={16} stroke="#067647" /> Saved</span>}
+        </div>
+
+        <div style={{ marginTop: 40, paddingTop: 28, borderTop: '1px solid #EAECF0' }}>
+          <h3 style={H(fontHeading, 20)}>Notifications</h3>
+          <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <ToggleRow label="Class reminders" sub="Texts 24h before each class" brand={brand} on />
+            <ToggleRow label="New classes near me" sub="A weekly digest, never spam" brand={brand} on />
+            <ToggleRow label="Messages from hosts" sub="Email me when a host replies" brand={brand} />
+          </div>
+        </div>
+        <div style={{ marginTop: 32, paddingTop: 24, borderTop: '1px solid #EAECF0' }}>
+          <Btn variant="ghost" style={{ color: '#B42318' }} onClick={() => window.Store.signOut()}><Icon.logout size={17} /> Sign out</Btn>
+        </div>
+      </div>
+    );
+  };
+
+  const PField = ({ label, value, onChange, placeholder, span, area }) => (
+    <label style={{ display: 'block', gridColumn: span ? '1 / -1' : 'auto' }}>
+      <span style={{ display: 'block', fontSize: 14, fontWeight: 500, color: '#344054', marginBottom: 6 }}>{label}</span>
+      {area
+        ? <textarea value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} rows={3} style={pInput} />
+        : <input value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} style={pInput} />}
+    </label>
+  );
+  const pInput = { width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #D0D5DD', fontSize: 16, fontFamily: 'inherit', color: '#101828', outline: 'none', boxSizing: 'border-box', resize: 'vertical' };
+
+  const ToggleRow = ({ label, sub, brand, on }) => {
+    const [v, setV] = useState(!!on);
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', borderBottom: '1px solid #F2F4F7' }}>
+        <div><div style={{ fontSize: 15, fontWeight: 500, color: '#101828' }}>{label}</div><div style={{ fontSize: 13, color: '#667085' }}>{sub}</div></div>
+        <button onClick={() => setV(!v)} style={{ width: 44, height: 26, borderRadius: 999, border: 0, background: v ? brand : '#D0D5DD', position: 'relative', cursor: 'pointer', transition: 'background .15s', flexShrink: 0 }}>
+          <span style={{ position: 'absolute', top: 3, left: v ? 21 : 3, width: 20, height: 20, borderRadius: '50%', background: '#FFF', transition: 'left .15s', boxShadow: '0 1px 2px rgba(0,0,0,0.2)' }} />
+        </button>
+      </div>
+    );
+  };
+
+  // ─── Shared bits ─────────────────────────────────────────────────────────────
+  const EmptyCard = ({ icon, title, body, cta, onCta, brand, fontHeading }) => (
+    <div style={{ border: '1px dashed #D0D5DD', borderRadius: 16, padding: '48px 32px', textAlign: 'center' }}>
+      <div style={{ width: 56, height: 56, borderRadius: '50%', background: '#F9F5FF', color: brand, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>{Icon[icon]({ size: 26 })}</div>
+      <h3 style={{ fontFamily: fontHeading, fontSize: 20, fontWeight: 600, color: '#101828', margin: '0 0 6px' }}>{title}</h3>
+      <p style={{ fontSize: 15, color: '#667085', margin: '0 0 20px' }}>{body}</p>
+      <Btn variant="primary" onClick={onCta}>{cta}</Btn>
+    </div>
+  );
+
+  const AuthGate = ({ brand, fontHeading }) => (
+    <Container style={{ padding: '80px 32px', textAlign: 'center' }}>
+      <div style={{ maxWidth: 440, margin: '0 auto' }}>
+        <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#F9F5FF', color: brand, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}><Icon.lock size={28} /></div>
+        <h1 style={{ fontFamily: fontHeading, fontSize: 30, fontWeight: 600, color: '#101828', margin: '0 0 10px', letterSpacing: '-0.02em' }}>Sign in to your account</h1>
+        <p style={{ fontSize: 17, color: '#667085', margin: '0 0 28px', lineHeight: 1.55 }}>Your booked classes, saved favorites, and messages live here.</p>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+          <Btn variant="primary" size="lg" onClick={() => window.Store.openAuth('signin', '/account')}>Sign in</Btn>
+          <Btn variant="secondary" size="lg" onClick={() => window.Store.openAuth('signup', '/account')}>Create account</Btn>
+        </div>
+      </div>
+    </Container>
+  );
+
+  window.AccountPage = AccountPage;
+})();
+
+</script>
+
+<!-- teach.jsx -->
+<script type="text/babel" data-presets="react">
+// teach.jsx — instructor marketing page + multi-step apply wizard
+(function () {
+  const { useState } = React;
+
+  // ─── Marketing page ──────────────────────────────────────────────────────────
+  const TeachPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const [rate, setRate] = useState(85);
+    const [seats, setSeats] = useState(6);
+    const [perMonth, setPerMonth] = useState(4);
+    const gross = rate * seats * perMonth;
+    const take = Math.round(gross * 0.85);
+
+    const steps = [
+      { icon: 'edit', h: 'List your class', b: 'Tell us what you teach and where. Our team helps you shape it into a great listing — usually live within 48 hours.' },
+      { icon: 'calendar', h: 'Set your schedule', b: 'You pick the dates, the group size, and the price. Block out the weeks you’re away. No minimums.' },
+      { icon: 'dollar', h: 'Get paid same day', b: 'Students pay when they book. We deposit your earnings the evening you teach — minus a flat 15%.' },
+    ];
+    const faqs = [
+      ['Do I need a commercial space?', 'No. Most hosts teach from their own kitchen, garage, studio, or a park. We just ask that it’s safe and accessible for your group size.'],
+      ['What about insurance?', 'Every booked class is covered by our host liability policy at no extra cost. Details live on the Insurance page.'],
+      ['How much does it cost to list?', 'Nothing. Listing is free. We take a flat 15% only when you actually get booked.'],
+      ['Can I teach more than one class?', 'Absolutely. Many hosts run two or three different classes and cross-promote them.'],
+    ];
+
+    return (
+      <div>
+        <PageHero eyebrow="For instructors" title={<>Teach what you know.<br />Get paid the day you teach it.</>}
+          sub="Turn your craft into a few hundred — or a few thousand — dollars a month. We handle bookings, payments, and insurance. You just show up and teach." tint="#FFF6EC">
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <Btn variant="primary" size="lg" to="/teach/apply">Start teaching</Btn>
+            <Btn variant="secondary" size="lg" to="/pricing">See pricing</Btn>
+          </div>
+          <div style={{ display: 'flex', gap: 28, marginTop: 28, flexWrap: 'wrap', fontSize: 14, color: '#475467' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Icon.check size={18} stroke="#079455" /> Free to list</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Icon.check size={18} stroke="#079455" /> Same-day payouts</span>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Icon.check size={18} stroke="#079455" /> Liability insurance included</span>
+          </div>
+        </PageHero>
+
+        {/* How it works */}
+        <Container style={{ padding: '72px 32px' }}>
+          <SectionHead eyebrow="How it works" title="Three steps to your first class" align="center" />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 28 }}>
+            {steps.map((s, i) => (
+              <div key={i} style={{ padding: 28, border: '1px solid #EAECF0', borderRadius: 18 }}>
+                <div style={{ width: 48, height: 48, borderRadius: 12, background: '#F9F5FF', color: brand, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>{Icon[s.icon]({ size: 24 })}</div>
+                <div style={{ fontSize: 13, color: '#98A2B3', fontWeight: 600 }}>Step {i + 1}</div>
+                <h3 style={{ fontFamily: fontHeading, fontSize: 21, fontWeight: 600, color: '#101828', margin: '4px 0 10px', letterSpacing: '-0.01em' }}>{s.h}</h3>
+                <p style={{ fontSize: 15, lineHeight: 1.6, color: '#475467', margin: 0 }}>{s.b}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+
+        {/* Earnings calculator */}
+        <div style={{ background: '#FAF7FF', borderTop: '1px solid #F2F4F7', borderBottom: '1px solid #F2F4F7' }}>
+          <Container style={{ padding: '72px 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center' }}>
+            <div>
+              <SectionHead eyebrow="Earnings" title="See what you could make" />
+              <p style={{ fontSize: 17, color: '#475467', lineHeight: 1.55, margin: '0 0 28px' }}>Most part-time hosts run a handful of classes a month. Drag the sliders to estimate your take-home after our flat 15%.</p>
+              <Slider label="Price per seat" value={rate} min={20} max={250} step={5} unit="$" onChange={setRate} brand={brand} />
+              <Slider label="Seats per class" value={seats} min={2} max={15} onChange={setSeats} brand={brand} />
+              <Slider label="Classes per month" value={perMonth} min={1} max={20} onChange={setPerMonth} brand={brand} />
+            </div>
+            <div style={{ background: '#FFF', borderRadius: 20, border: '1px solid #EAECF0', padding: 32, boxShadow: '0px 12px 32px -12px rgba(16,24,40,0.12)' }}>
+              <div style={{ fontSize: 14, color: '#667085' }}>Your estimated take-home</div>
+              <div style={{ fontFamily: fontHeading, fontSize: 56, fontWeight: 600, color: '#101828', letterSpacing: '-0.03em', margin: '6px 0 2px' }}>${take.toLocaleString()}</div>
+              <div style={{ fontSize: 14, color: '#667085' }}>per month, after fees</div>
+              <div style={{ marginTop: 24, paddingTop: 20, borderTop: '1px solid #EAECF0', display: 'flex', flexDirection: 'column', gap: 10, fontSize: 15 }}>
+                <Line l="Gross bookings" v={`$${gross.toLocaleString()}`} />
+                <Line l="InPerson fee (15%)" v={`-$${(gross - take).toLocaleString()}`} muted />
+                <Line l="You keep" v={`$${take.toLocaleString()}`} bold brand={brand} />
+              </div>
+              <Btn variant="primary" full size="lg" style={{ marginTop: 24 }} to="/teach/apply">Start earning</Btn>
+            </div>
+          </Container>
+        </div>
+
+        {/* Testimonial */}
+        <Container style={{ padding: '72px 32px' }}>
+          <div style={{ background: 'linear-gradient(135deg, #FAF7FF 0%, #FFF5E6 100%)', borderRadius: 24, border: '1px solid #EAECF0', padding: 56, display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 48, alignItems: 'center' }}>
+            <div>
+              <Icon.quote size={36} stroke={brand} />
+              <p style={{ fontFamily: fontHeading, fontSize: 26, lineHeight: 1.35, color: '#101828', fontWeight: 500, margin: '14px 0 20px', letterSpacing: '-0.01em' }}>
+                I taught a sourdough class for fun. Now it pays my rent and I've met three of my favorite people in the city.
+              </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <Avatar name="Maya Lindqvist" hue={18} size={48} />
+                <div><div style={{ fontSize: 15, fontWeight: 600, color: '#101828' }}>Maya Lindqvist</div><div style={{ fontSize: 14, color: '#667085' }}>Baker · Brooklyn · teaching 7 years</div></div>
+              </div>
+            </div>
+            <div style={{ display: 'grid', gap: 14 }}>
+              {[['$2,100', 'earned last month'], ['312', 'five-star reviews'], ['48h', 'to go live']].map(([n, l]) => (
+                <div key={l} style={{ background: '#FFF', borderRadius: 14, padding: '16px 20px', border: '1px solid #EAECF0' }}>
+                  <div style={{ fontFamily: fontHeading, fontSize: 28, fontWeight: 600, color: '#101828' }}>{n}</div>
+                  <div style={{ fontSize: 14, color: '#667085' }}>{l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+
+        {/* FAQ */}
+        <Container style={{ padding: '0 32px 72px', maxWidth: 820 }}>
+          <SectionHead eyebrow="Questions" title="Good to know" align="center" />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {faqs.map((f, i) => <FaqRow key={i} q={f[0]} a={f[1]} fontHeading={fontHeading} />)}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: 40 }}>
+            <Btn variant="primary" size="lg" to="/teach/apply">List your first class</Btn>
+          </div>
+        </Container>
+      </div>
+    );
+  };
+
+  const Line = ({ l, v, muted, bold, brand }) => (
+    <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: bold ? 600 : 400, color: bold ? '#101828' : '#475467', paddingTop: bold ? 10 : 0, borderTop: bold ? '1px solid #EAECF0' : 'none' }}>
+      <span>{l}</span><span style={{ color: muted ? '#98A2B3' : bold ? brand : '#101828', fontSize: bold ? 17 : 15 }}>{v}</span>
+    </div>
+  );
+
+  const Slider = ({ label, value, min, max, step = 1, unit = '', onChange, brand }) => (
+    <div style={{ marginBottom: 22 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+        <span style={{ fontSize: 15, fontWeight: 500, color: '#344054' }}>{label}</span>
+        <span style={{ fontSize: 15, fontWeight: 600, color: '#101828' }}>{unit}{value}</span>
+      </div>
+      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))}
+        style={{ width: '100%', accentColor: brand, height: 6, cursor: 'pointer' }} />
+    </div>
+  );
+
+  const FaqRow = ({ q, a, fontHeading }) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <div style={{ borderBottom: '1px solid #EAECF0' }}>
+        <button onClick={() => setOpen(!open)} style={{ width: '100%', appearance: 'none', border: 0, background: 'transparent', padding: '20px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+          <span style={{ fontSize: 18, fontWeight: 600, color: '#101828', fontFamily: fontHeading }}>{q}</span>
+          <span style={{ color: '#667085', flexShrink: 0 }}>{open ? <Icon.chevU size={20} /> : <Icon.chevD size={20} />}</span>
+        </button>
+        {open && <p style={{ fontSize: 16, lineHeight: 1.6, color: '#475467', margin: '0 0 20px', maxWidth: 680 }}>{a}</p>}
+      </div>
+    );
+  };
+
+  // ─── Apply wizard ────────────────────────────────────────────────────────────
+  const APPLY_STEPS = ['You', 'Your class', 'Logistics', 'Review'];
+
+  const TeachApply = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const [step, setStep] = useState(0);
+    const [done, setDone] = useState(false);
+    const [f, setF] = useState({
+      name: '', email: '', city: '', craft: '',
+      title: '', category: 'food', desc: '', groupSize: '6',
+      where: '', duration: '3 hr', price: '85', included: '',
+    });
+    const up = (k, v) => setF((s) => ({ ...s, [k]: v }));
+    const next = () => { if (step === APPLY_STEPS.length - 1) setDone(true); else setStep((s) => s + 1); };
+    const back = () => setStep((s) => Math.max(0, s - 1));
+
+    if (done) return <ApplyDone f={f} brand={brand} fontHeading={fontHeading} />;
+
+    return (
+      <Container w={760} style={{ padding: '48px 32px 80px' }}>
+        <button onClick={() => window.navigate('/teach')} style={ghostBack}><Icon.arrowL size={16} /> Back to teaching</button>
+        <h1 style={{ fontFamily: fontHeading, fontSize: 34, fontWeight: 600, color: '#101828', margin: '20px 0 6px', letterSpacing: '-0.02em' }}>List your class</h1>
+        <p style={{ fontSize: 16, color: '#667085', margin: '0 0 28px' }}>Takes about 5 minutes. You can edit everything later.</p>
+
+        {/* progress */}
+        <div style={{ display: 'flex', gap: 8, marginBottom: 32 }}>
+          {APPLY_STEPS.map((s, i) => (
+            <div key={s} style={{ flex: 1 }}>
+              <div style={{ height: 4, borderRadius: 99, background: i <= step ? brand : '#EAECF0' }} />
+              <div style={{ fontSize: 12, color: i <= step ? '#101828' : '#98A2B3', marginTop: 8, fontWeight: i === step ? 600 : 500 }}>{s}</div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ border: '1px solid #EAECF0', borderRadius: 18, padding: 28 }}>
+          {step === 0 && (
+            <Grid>
+              <WField label="Your name" value={f.name} onChange={(v) => up('name', v)} placeholder="Maya Lindqvist" />
+              <WField label="Email" value={f.email} onChange={(v) => up('email', v)} placeholder="you@example.com" />
+              <WField label="City" value={f.city} onChange={(v) => up('city', v)} placeholder="Brooklyn, NY" />
+              <WField label="What do you make or do?" value={f.craft} onChange={(v) => up('craft', v)} placeholder="Baker, woodworker, climber…" />
+            </Grid>
+          )}
+          {step === 1 && (
+            <Grid>
+              <WField label="Class title" span value={f.title} onChange={(v) => up('title', v)} placeholder="Sourdough from scratch" />
+              <WSelect label="Category" value={f.category} onChange={(v) => up('category', v)} options={(window.CATEGORIES || []).filter((c) => c.id !== 'all')} />
+              <WSelect label="Group size" value={f.groupSize} onChange={(v) => up('groupSize', v)} options={['4', '6', '8', '10', '12', '15'].map((n) => ({ id: n, label: `${n} people max` }))} />
+              <WField label="Describe the class" span area value={f.desc} onChange={(v) => up('desc', v)} placeholder="What will students do, make, and leave with?" />
+            </Grid>
+          )}
+          {step === 2 && (
+            <Grid>
+              <WField label="Where you'll teach" span value={f.where} onChange={(v) => up('where', v)} placeholder="My studio in Gowanus / a nearby park" />
+              <WSelect label="Length" value={f.duration} onChange={(v) => up('duration', v)} options={['75 min', '2 hr', '2.5 hr', '3 hr', '3.5 hr', '4 hr'].map((n) => ({ id: n, label: n }))} />
+              <WField label="Price per seat ($)" value={f.price} onChange={(v) => up('price', v)} placeholder="85" />
+              <WField label="What's included" span area value={f.included} onChange={(v) => up('included', v)} placeholder="Materials, tools, a take-home item…" />
+            </Grid>
+          )}
+          {step === 3 && (
+            <div>
+              <h3 style={{ fontFamily: fontHeading, fontSize: 22, fontWeight: 600, color: '#101828', margin: '0 0 16px' }}>Review your listing</h3>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <Rev k="Host" v={`${f.name || '—'} · ${f.city || '—'}`} />
+                <Rev k="Class" v={f.title || '—'} />
+                <Rev k="Category" v={(window.CATEGORIES.find((c) => c.id === f.category) || {}).label || '—'} />
+                <Rev k="Group size" v={`${f.groupSize} people`} />
+                <Rev k="Length & price" v={`${f.duration} · $${f.price || '—'}/seat`} />
+                <Rev k="Where" v={f.where || '—'} />
+                <Rev k="Description" v={f.desc || '—'} />
+              </div>
+              <div style={{ marginTop: 20, background: '#F9F5FF', border: '1px solid #E9D7FE', borderRadius: 12, padding: 16, fontSize: 14, color: '#53389E', display: 'flex', gap: 10 }}>
+                <Icon.shield size={20} stroke={brand} />
+                <span>Our team reviews every listing for safety and quality. We'll email you within 48 hours — usually much sooner.</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 24 }}>
+          {step > 0 ? <Btn variant="secondary" onClick={back}>Back</Btn> : <span />}
+          <Btn variant="primary" size="lg" onClick={next}>{step === APPLY_STEPS.length - 1 ? 'Submit listing' : 'Continue'}</Btn>
+        </div>
+      </Container>
+    );
+  };
+
+  const ApplyDone = ({ f, brand, fontHeading }) => (
+    <Container w={620} style={{ padding: '80px 32px', textAlign: 'center' }}>
+      <div style={{ width: 80, height: 80, borderRadius: '50%', background: '#ECFDF3', color: '#039855', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}><Icon.check size={40} stroke="#039855" sw={2.4} /></div>
+      <h1 style={{ fontFamily: fontHeading, fontSize: 34, fontWeight: 600, color: '#101828', margin: '0 0 12px', letterSpacing: '-0.02em' }}>Listing submitted!</h1>
+      <p style={{ fontSize: 18, color: '#475467', lineHeight: 1.55, margin: '0 auto 32px', maxWidth: 460 }}>
+        Thanks {f.name ? f.name.split(' ')[0] : 'there'} — <strong style={{ color: '#101828' }}>{f.title || 'your class'}</strong> is in review. We'll email {f.email || 'you'} within 48 hours to get it live.
+      </p>
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+        <Btn variant="primary" size="lg" to="/teach">Back to teaching</Btn>
+        <Btn variant="secondary" size="lg" to="/handbook">Read the host handbook</Btn>
+      </div>
+    </Container>
+  );
+
+  // wizard field helpers
+  const Grid = ({ children }) => <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>{children}</div>;
+  const wInput = { width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #D0D5DD', fontSize: 16, fontFamily: 'inherit', color: '#101828', outline: 'none', boxSizing: 'border-box', resize: 'vertical' };
+  const wLbl = { display: 'block', fontSize: 14, fontWeight: 500, color: '#344054', marginBottom: 6 };
+  const WField = ({ label, value, onChange, placeholder, span, area }) => (
+    <label style={{ display: 'block', gridColumn: span ? '1 / -1' : 'auto' }}>
+      <span style={wLbl}>{label}</span>
+      {area ? <textarea value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} rows={4} style={wInput} />
+        : <input value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} style={wInput} />}
+    </label>
+  );
+  const WSelect = ({ label, value, onChange, options, span }) => (
+    <label style={{ display: 'block', gridColumn: span ? '1 / -1' : 'auto' }}>
+      <span style={wLbl}>{label}</span>
+      <select value={value} onChange={(e) => onChange(e.target.value)} style={{ ...wInput, cursor: 'pointer', appearance: 'none', backgroundImage: 'url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23475467\' stroke-width=\'2\'><path d=\'M6 9l6 6 6-6\'/></svg>")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}>
+        {options.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+      </select>
+    </label>
+  );
+  const Rev = ({ k, v }) => (
+    <div style={{ display: 'flex', gap: 16, padding: '12px 0', borderBottom: '1px solid #F2F4F7' }}>
+      <span style={{ fontSize: 14, color: '#667085', width: 120, flexShrink: 0 }}>{k}</span>
+      <span style={{ fontSize: 15, color: '#101828' }}>{v}</span>
+    </div>
+  );
+  const ghostBack = { appearance: 'none', border: 0, background: 'transparent', padding: 0, color: '#475467', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontSize: 14, fontFamily: 'inherit', fontWeight: 500 };
+
+  window.TeachPage = TeachPage;
+  window.TeachApply = TeachApply;
+})();
+
+</script>
+
+<!-- giftcards.jsx -->
+<script type="text/babel" data-presets="react">
+// giftcards.jsx — gift card marketing + purchase flow with live preview
+(function () {
+  const { useState } = React;
+
+  const DESIGNS = [
+    { id: 'wheat', label: 'Baker', kind: 'wheat', color: '#F5E9D6', accent: '#B54708' },
+    { id: 'wash', label: 'Studio', kind: 'wash', color: '#E8DFF0', accent: '#6941C6' },
+    { id: 'mountain', label: 'Outdoors', kind: 'mountain', color: '#DCE9F5', accent: '#1570EF' },
+    { id: 'rings', label: 'Maker', kind: 'rings', color: '#EFE4DC', accent: '#B54708' },
+  ];
+  const AMOUNTS = [50, 85, 120, 200];
+
+  const GiftCardsPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const [design, setDesign] = useState(DESIGNS[0]);
+    const [amount, setAmount] = useState(85);
+    const [custom, setCustom] = useState('');
+    const [f, setF] = useState({ to: '', from: '', email: '', message: '', when: 'now' });
+    const [done, setDone] = useState(false);
+    const up = (k, v) => setF((s) => ({ ...s, [k]: v }));
+    const value = custom ? Math.max(10, Number(custom) || 0) : amount;
+
+    if (done) return <GiftDone f={f} value={value} design={design} brand={brand} fontHeading={fontHeading} />;
+
+    return (
+      <div>
+        <PageHero eyebrow="Gift cards" title="Give a day worth making" sub="The best gift isn't a thing — it's an afternoon learning to throw a mug, weld a hook, or bake a loaf. Redeemable on any class, never expires." tint="#FFF6EC" />
+
+        <Container style={{ padding: '56px 32px 80px', display: 'grid', gridTemplateColumns: '1fr 460px', gap: 64, alignItems: 'start' }}>
+          {/* form */}
+          <div>
+            <Block n="1" title="Choose a design" fontHeading={fontHeading}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
+                {DESIGNS.map((d) => (
+                  <button key={d.id} onClick={() => setDesign(d)} style={{ appearance: 'none', padding: 0, border: '2px solid ' + (design.id === d.id ? brand : 'transparent'), borderRadius: 12, cursor: 'pointer', overflow: 'hidden', background: 'none' }}>
+                    <div style={{ aspectRatio: '8/5', position: 'relative' }}><Pattern kind={d.kind} color={d.color} accent={d.accent} /></div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#475467', padding: '6px 0', background: '#FFF' }}>{d.label}</div>
+                  </button>
+                ))}
+              </div>
+            </Block>
+
+            <Block n="2" title="Pick an amount" fontHeading={fontHeading}>
+              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                {AMOUNTS.map((a) => (
+                  <button key={a} onClick={() => { setAmount(a); setCustom(''); }} style={{ appearance: 'none', padding: '12px 22px', borderRadius: 12, border: '1.5px solid ' + (!custom && amount === a ? brand : '#D0D5DD'), background: !custom && amount === a ? '#F9F5FF' : '#FFF', color: '#101828', fontWeight: 600, fontSize: 16, cursor: 'pointer', fontFamily: 'inherit' }}>${a}</button>
+                ))}
+                <div style={{ display: 'flex', alignItems: 'center', border: '1.5px solid ' + (custom ? brand : '#D0D5DD'), borderRadius: 12, padding: '0 14px', background: custom ? '#F9F5FF' : '#FFF' }}>
+                  <span style={{ color: '#667085', fontSize: 16 }}>$</span>
+                  <input value={custom} onChange={(e) => setCustom(e.target.value.replace(/[^0-9]/g, ''))} placeholder="Custom" style={{ width: 70, border: 0, outline: 0, background: 'transparent', fontSize: 16, fontFamily: 'inherit', padding: '12px 0 12px 4px' }} />
+                </div>
+              </div>
+            </Block>
+
+            <Block n="3" title="Who's it for?" fontHeading={fontHeading}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+                <GField label="Recipient's name" value={f.to} onChange={(v) => up('to', v)} placeholder="Sam" />
+                <GField label="From" value={f.from} onChange={(v) => up('from', v)} placeholder="You" />
+                <GField label="Recipient's email" span value={f.email} onChange={(v) => up('email', v)} placeholder="sam@example.com" />
+                <GField label="Add a message" span area value={f.message} onChange={(v) => up('message', v)} placeholder="Happy birthday — go make something!" />
+              </div>
+              <div style={{ marginTop: 16 }}>
+                <span style={{ display: 'block', fontSize: 14, fontWeight: 500, color: '#344054', marginBottom: 8 }}>When should we send it?</span>
+                <div style={{ display: 'flex', gap: 10 }}>
+                  {[['now', 'Send now'], ['later', 'Schedule']].map(([k, l]) => (
+                    <button key={k} onClick={() => up('when', k)} style={{ appearance: 'none', padding: '10px 18px', borderRadius: 10, border: '1.5px solid ' + (f.when === k ? brand : '#D0D5DD'), background: f.when === k ? '#F9F5FF' : '#FFF', color: '#101828', fontWeight: 500, fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
+                  ))}
+                </div>
+              </div>
+            </Block>
+          </div>
+
+          {/* sticky preview + checkout */}
+          <aside style={{ position: 'sticky', top: 96 }}>
+            <div style={{ borderRadius: 20, overflow: 'hidden', border: '1px solid #EAECF0', boxShadow: '0px 16px 40px -12px rgba(16,24,40,0.18)' }}>
+              <div style={{ position: 'relative', aspectRatio: '8/5' }}>
+                <Pattern kind={design.kind} color={design.color} accent={design.accent} />
+                <div style={{ position: 'absolute', inset: 0, padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <Logo brand="#101828" size={26} />
+                    <span style={{ fontFamily: fontHeading, fontSize: 18, fontWeight: 600, color: '#101828' }}>InPerson</span>
+                  </div>
+                  <div>
+                    <div style={{ fontFamily: fontHeading, fontSize: 44, fontWeight: 600, color: '#101828', letterSpacing: '-0.02em' }}>${value}</div>
+                    <div style={{ fontSize: 14, color: '#475467' }}>Gift card{f.to ? ` for ${f.to}` : ''}</div>
+                  </div>
+                </div>
+              </div>
+              <div style={{ padding: 20, background: '#FFF' }}>
+                {f.message && <p style={{ fontSize: 14, color: '#475467', fontStyle: 'italic', margin: '0 0 16px', lineHeight: 1.5 }}>"{f.message}"</p>}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: 15 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', color: '#475467' }}><span>Gift card value</span><span style={{ color: '#101828' }}>${value}</span></div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', color: '#475467' }}><span>Delivery</span><span style={{ color: '#101828' }}>Free</span></div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, fontSize: 17, paddingTop: 10, marginTop: 4, borderTop: '1px solid #EAECF0' }}><span>Total</span><span style={{ color: '#101828', fontFamily: fontHeading }}>${value}</span></div>
+                </div>
+                <Btn variant="primary" full size="lg" style={{ marginTop: 18 }} onClick={() => setDone(true)}><Icon.gift size={18} /> Buy gift card</Btn>
+                <div style={{ textAlign: 'center', fontSize: 13, color: '#667085', marginTop: 12 }}>Never expires · Redeemable on any class</div>
+              </div>
+            </div>
+          </aside>
+        </Container>
+      </div>
+    );
+  };
+
+  const GiftDone = ({ f, value, design, brand, fontHeading }) => (
+    <Container w={620} style={{ padding: '80px 32px', textAlign: 'center' }}>
+      <div style={{ width: 80, height: 80, borderRadius: '50%', background: '#ECFDF3', color: '#039855', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}><Icon.gift size={38} stroke="#039855" /></div>
+      <h1 style={{ fontFamily: fontHeading, fontSize: 34, fontWeight: 600, color: '#101828', margin: '0 0 12px', letterSpacing: '-0.02em' }}>Gift card on its way 🎁</h1>
+      <p style={{ fontSize: 18, color: '#475467', lineHeight: 1.55, margin: '0 auto 32px', maxWidth: 480 }}>
+        A <strong style={{ color: '#101828' }}>${value}</strong> gift card {f.when === 'now' ? 'has been sent' : 'is scheduled'} to {f.email || 'your recipient'}{f.to ? ` for ${f.to}` : ''}. We've emailed you a receipt.
+      </p>
+      <div style={{ maxWidth: 360, margin: '0 auto 32px', borderRadius: 16, overflow: 'hidden', border: '1px solid #EAECF0', position: 'relative', aspectRatio: '8/5' }}>
+        <Pattern kind={design.kind} color={design.color} accent={design.accent} />
+        <div style={{ position: 'absolute', left: 20, bottom: 18, fontFamily: fontHeading, fontSize: 32, fontWeight: 600, color: '#101828' }}>${value}</div>
+      </div>
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+        <Btn variant="primary" size="lg" to="/">Browse classes</Btn>
+        <Btn variant="secondary" size="lg" to="/gift-cards" onClick={() => window.location.reload()}>Send another</Btn>
+      </div>
+    </Container>
+  );
+
+  const Block = ({ n, title, children, fontHeading }) => (
+    <section style={{ marginBottom: 36 }}>
+      <h3 style={{ fontFamily: fontHeading, fontSize: 20, fontWeight: 600, color: '#101828', margin: '0 0 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <span style={{ width: 26, height: 26, borderRadius: '50%', background: '#101828', color: '#FFF', fontSize: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter' }}>{n}</span>
+        {title}
+      </h3>
+      {children}
+    </section>
+  );
+
+  const gInput = { width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #D0D5DD', fontSize: 16, fontFamily: 'inherit', color: '#101828', outline: 'none', boxSizing: 'border-box', resize: 'vertical' };
+  const GField = ({ label, value, onChange, placeholder, span, area }) => (
+    <label style={{ display: 'block', gridColumn: span ? '1 / -1' : 'auto' }}>
+      <span style={{ display: 'block', fontSize: 14, fontWeight: 500, color: '#344054', marginBottom: 6 }}>{label}</span>
+      {area ? <textarea value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} rows={3} style={gInput} />
+        : <input value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} style={gInput} />}
+    </label>
+  );
+
+  window.GiftCardsPage = GiftCardsPage;
+})();
+
+</script>
+
+<!-- help.jsx -->
+<script type="text/babel" data-presets="react">
+// help.jsx — help center with categories, articles, and search
+(function () {
+  const { useState } = React;
+
+  const TOPICS = [
+    { id: 'booking', icon: 'ticket', title: 'Booking & payments', blurb: 'Reserving seats, receipts, gift cards.',
+      articles: [
+        { id: 'how-to-book', q: 'How do I book a class?', a: "Open any class, pick a date on the calendar strip, choose how many seats, and tap Reserve a seat. You'll review the details and add payment before anything is charged. A confirmation lands in your email and under My classes." },
+        { id: 'when-charged', q: 'When am I charged?', a: "Your card is charged when you confirm the booking. If a class is cancelled by the host, you're refunded in full automatically — usually within 3–5 business days." },
+        { id: 'gift-redeem', q: 'How do I redeem a gift card?', a: "Add the gift code at checkout and the balance is applied to your total. Gift cards never expire and can be split across multiple classes." },
+      ] },
+    { id: 'cancel', icon: 'calendar', title: 'Changes & cancellations', blurb: 'Reschedule, cancel, refunds.',
+      articles: [
+        { id: 'cancel-class', q: 'How do I cancel?', a: "Go to My classes, open the booking, and tap Cancel. Cancel up to 48 hours before the start time for a full refund. Inside 48 hours, we'll try to fill your seat — if we can, you're refunded." },
+        { id: 'reschedule', q: 'Can I switch to a different date?', a: "Yes — message your host through the class page. Most are happy to move you to another session if there's room." },
+      ] },
+    { id: 'safety', icon: 'shield', title: 'Trust & safety', blurb: 'Vetting, insurance, reporting.',
+      articles: [
+        { id: 'vetting', q: 'Are instructors vetted?', a: "Every host completes identity verification and a background check before their first class goes live. Listings are reviewed by our team for safety and accuracy." },
+        { id: 'insurance', q: 'Am I covered if something happens?', a: "Every booked class is covered by InPerson's liability policy. If you ever feel unsafe, leave and contact us — we'll make it right." },
+      ] },
+    { id: 'account', icon: 'settings', title: 'Your account', blurb: 'Profile, notifications, sign-in.',
+      articles: [
+        { id: 'edit-profile', q: 'How do I edit my profile?', a: "Open the account menu, go to Profile & settings, update your details, and tap Save changes." },
+        { id: 'notifications', q: 'How do I change notifications?', a: "Under Profile & settings you can toggle class reminders, weekly digests, and host-message emails independently." },
+      ] },
+    { id: 'teaching', icon: 'briefcase', title: 'Teaching a class', blurb: 'Listing, payouts, hosting.',
+      articles: [
+        { id: 'become-host', q: 'How do I become a host?', a: "Tap Teach a class, then List your class. Walk through the short wizard and our team reviews it within 48 hours." },
+        { id: 'payouts', q: 'When do I get paid?', a: "We deposit your earnings — minus a flat 15% — the evening you teach. Set up your bank details once and it's automatic from then on." },
+      ] },
+    { id: 'gift', icon: 'gift', title: 'Gift cards', blurb: 'Buying, sending, balances.',
+      articles: [
+        { id: 'buy-gift', q: 'How do gift cards work?', a: "Choose a design and amount, add a note, and we email it to your recipient now or on a date you pick. They redeem it on any class, and it never expires." },
+      ] },
+  ];
+
+  const allArticles = TOPICS.flatMap((t) => t.articles.map((a) => ({ ...a, topic: t.id, topicTitle: t.title })));
+
+  const HelpPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const route = window.useRoute();
+    const topicId = route.parts[1];
+    const [query, setQuery] = useState('');
+
+    if (topicId) {
+      const topic = TOPICS.find((t) => t.id === topicId);
+      if (topic) return <TopicView topic={topic} brand={brand} fontHeading={fontHeading} />;
+    }
+
+    const results = query.trim()
+      ? allArticles.filter((a) => (a.q + ' ' + a.a).toLowerCase().includes(query.toLowerCase()))
+      : null;
+
+    return (
+      <div>
+        <section style={{ background: 'linear-gradient(180deg, #FAF7FF 0%, #FFFFFF 100%)', borderBottom: '1px solid #F2F4F7' }}>
+          <Container style={{ padding: '64px 32px 48px', textAlign: 'center' }}>
+            <h1 style={{ fontFamily: fontHeading, fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 600, color: '#101828', margin: '0 0 24px', letterSpacing: '-0.02em' }}>How can we help?</h1>
+            <div style={{ maxWidth: 600, margin: '0 auto', position: 'relative' }}>
+              <span style={{ position: 'absolute', left: 18, top: '50%', transform: 'translateY(-50%)', color: '#667085' }}><Icon.search size={20} /></span>
+              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search for help…" style={{ width: '100%', padding: '16px 18px 16px 52px', borderRadius: 14, border: '1px solid #EAECF0', fontSize: 17, fontFamily: 'inherit', outline: 'none', boxShadow: '0px 4px 12px -4px rgba(16,24,40,0.08)', boxSizing: 'border-box' }} />
+            </div>
+          </Container>
+        </section>
+
+        <Container style={{ padding: '56px 32px 80px' }}>
+          {results ? (
+            <div style={{ maxWidth: 760, margin: '0 auto' }}>
+              <h2 style={{ fontFamily: fontHeading, fontSize: 22, fontWeight: 600, color: '#101828', margin: '0 0 20px' }}>{results.length} result{results.length === 1 ? '' : 's'} for "{query}"</h2>
+              {results.length === 0
+                ? <p style={{ fontSize: 16, color: '#667085' }}>Nothing matched. Try another search or <a href="#/contact" style={{ color: brand, fontWeight: 600 }}>contact us</a>.</p>
+                : <div>{results.map((a, i) => <Faq key={i} q={a.q} a={a.a} tag={a.topicTitle} fontHeading={fontHeading} />)}</div>}
+            </div>
+          ) : (
+            <>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, marginBottom: 64 }}>
+                {TOPICS.map((t) => (
+                  <a key={t.id} href={'#/help/' + t.id} style={{ textDecoration: 'none', border: '1px solid #EAECF0', borderRadius: 16, padding: 24, display: 'block', transition: 'box-shadow .15s' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0px 8px 24px -8px rgba(16,24,40,0.12)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.boxShadow = 'none')}>
+                    <div style={{ width: 44, height: 44, borderRadius: 11, background: '#F9F5FF', color: brand, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>{Icon[t.icon]({ size: 22 })}</div>
+                    <h3 style={{ fontFamily: fontHeading, fontSize: 19, fontWeight: 600, color: '#101828', margin: '0 0 6px' }}>{t.title}</h3>
+                    <p style={{ fontSize: 14, color: '#667085', margin: 0, lineHeight: 1.5 }}>{t.blurb}</p>
+                  </a>
+                ))}
+              </div>
+
+              <div style={{ maxWidth: 760, margin: '0 auto' }}>
+                <h2 style={{ fontFamily: fontHeading, fontSize: 24, fontWeight: 600, color: '#101828', margin: '0 0 20px', letterSpacing: '-0.01em' }}>Popular questions</h2>
+                {allArticles.slice(0, 6).map((a, i) => <Faq key={i} q={a.q} a={a.a} tag={a.topicTitle} fontHeading={fontHeading} />)}
+              </div>
+            </>
+          )}
+
+          <ContactCta brand={brand} fontHeading={fontHeading} />
+        </Container>
+      </div>
+    );
+  };
+
+  const TopicView = ({ topic, brand, fontHeading }) => (
+    <Container w={820} style={{ padding: '48px 32px 80px' }}>
+      <button onClick={() => window.navigate('/help')} style={{ appearance: 'none', border: 0, background: 'transparent', padding: 0, color: '#475467', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontSize: 14, fontFamily: 'inherit', fontWeight: 500, marginBottom: 24 }}><Icon.arrowL size={16} /> Help center</button>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12 }}>
+        <div style={{ width: 52, height: 52, borderRadius: 13, background: '#F9F5FF', color: brand, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{Icon[topic.icon]({ size: 26 })}</div>
+        <h1 style={{ fontFamily: fontHeading, fontSize: 34, fontWeight: 600, color: '#101828', margin: 0, letterSpacing: '-0.02em' }}>{topic.title}</h1>
+      </div>
+      <p style={{ fontSize: 17, color: '#667085', margin: '0 0 32px' }}>{topic.blurb}</p>
+      <div>{topic.articles.map((a, i) => <Faq key={i} q={a.q} a={a.a} fontHeading={fontHeading} open={i === 0} />)}</div>
+      <ContactCta brand={brand} fontHeading={fontHeading} />
+    </Container>
+  );
+
+  const Faq = ({ q, a, tag, fontHeading, open: open0 }) => {
+    const [open, setOpen] = useState(!!open0);
+    return (
+      <div style={{ borderBottom: '1px solid #EAECF0' }}>
+        <button onClick={() => setOpen(!open)} style={{ width: '100%', appearance: 'none', border: 0, background: 'transparent', padding: '20px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+          <span style={{ fontSize: 17, fontWeight: 600, color: '#101828', fontFamily: fontHeading }}>{q}{tag && <span style={{ fontSize: 12, color: '#98A2B3', fontWeight: 500, marginLeft: 10, fontFamily: 'Inter' }}>{tag}</span>}</span>
+          <span style={{ color: '#667085', flexShrink: 0 }}>{open ? <Icon.chevU size={20} /> : <Icon.chevD size={20} />}</span>
+        </button>
+        {open && <p style={{ fontSize: 16, lineHeight: 1.65, color: '#475467', margin: '0 0 20px', maxWidth: 700 }}>{a}</p>}
+      </div>
+    );
+  };
+
+  const ContactCta = ({ brand, fontHeading }) => (
+    <div style={{ marginTop: 56, background: '#F9FAFB', border: '1px solid #EAECF0', borderRadius: 20, padding: 40, textAlign: 'center' }}>
+      <h3 style={{ fontFamily: fontHeading, fontSize: 24, fontWeight: 600, color: '#101828', margin: '0 0 8px' }}>Still need a hand?</h3>
+      <p style={{ fontSize: 16, color: '#667085', margin: '0 0 24px' }}>Our team replies within a few hours, every day.</p>
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+        <Btn variant="primary" to="/contact"><Icon.message size={18} /> Contact support</Btn>
+        <Btn variant="secondary" to="/trust">Trust &amp; safety</Btn>
+      </div>
+    </div>
+  );
+
+  window.HelpPage = HelpPage;
+})();
+
+</script>
+
+<!-- pages.jsx -->
+<script type="text/babel" data-presets="react">
+// pages.jsx — company, editorial & policy pages
+(function () {
+  const { useState } = React;
+
+  // ─── Generic long-form content page (policy / handbook) ──────────────────────
+  const ContentPage = ({ eyebrow, title, intro, sections, updated, aside }) => {
+    const { brand, fontHeading } = window.useTheme();
+    return (
+      <div>
+        <PageHero eyebrow={eyebrow} title={title} sub={intro} />
+        <Container w={aside ? 1080 : 820} style={{ padding: '56px 32px 80px', display: aside ? 'grid' : 'block', gridTemplateColumns: aside ? '1fr 280px' : 'none', gap: 56, alignItems: 'start' }}>
+          <div>
+            {updated && <div style={{ fontSize: 14, color: '#98A2B3', marginBottom: 28 }}>Last updated {updated}</div>}
+            {sections.map((s, i) => (
+              <section key={i} style={{ marginBottom: 36 }}>
+                <h2 style={{ fontFamily: fontHeading, fontSize: 24, fontWeight: 600, color: '#101828', margin: '0 0 12px', letterSpacing: '-0.01em' }}>{s.h}</h2>
+                {s.p && s.p.map((para, j) => <p key={j} style={{ fontSize: 16, lineHeight: 1.7, color: '#475467', margin: '0 0 14px' }}>{para}</p>)}
+                {s.list && (
+                  <ul style={{ margin: '4px 0 0', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    {s.list.map((li, j) => (
+                      <li key={j} style={{ display: 'flex', gap: 12, fontSize: 16, lineHeight: 1.6, color: '#475467' }}>
+                        <span style={{ color: brand, marginTop: 2, flexShrink: 0 }}><Icon.check size={20} /></span><span>{li}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))}
+          </div>
+          {aside && (
+            <aside style={{ position: 'sticky', top: 96, border: '1px solid #EAECF0', borderRadius: 16, padding: 24, background: '#F9FAFB' }}>
+              <h3 style={{ fontFamily: fontHeading, fontSize: 18, fontWeight: 600, color: '#101828', margin: '0 0 14px' }}>{aside.h}</h3>
+              <p style={{ fontSize: 14, color: '#475467', lineHeight: 1.6, margin: '0 0 18px' }}>{aside.p}</p>
+              <Btn variant="primary" full to={aside.to}>{aside.cta}</Btn>
+            </aside>
+          )}
+        </Container>
+      </div>
+    );
+  };
+
+  // ─── About ───────────────────────────────────────────────────────────────────
+  const AboutPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const values = [
+      { icon: 'users', h: 'Neighbors, not influencers', b: 'We surface the welder two blocks over, not a celebrity chef on a soundstage. Small classes, real rooms.' },
+      { icon: 'dollar', h: 'Hosts come first', b: 'A flat 15% and same-day payouts. No murky fees, no algorithm games. When hosts do well, everyone does.' },
+      { icon: 'leaf', h: 'Made by hand', b: 'We believe people are happier when they make things. The whole company exists to get more hands busy.' },
+      { icon: 'shield', h: 'Earned trust', b: 'Every host is vetted, every class insured. Safety is a feature, not fine print.' },
+    ];
+    return (
+      <div>
+        <PageHero eyebrow="Our story" title="We think the best things are still made by hand" sub="InPerson started in a Brooklyn kitchen in 2024, when a sourdough class for six neighbors turned into a waitlist of two hundred. We built the thing we wished existed." />
+        <Container style={{ padding: '64px 32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, marginBottom: 72 }}>
+            {[['9,400+', 'classes hosted'], ['1,800', 'active instructors'], ['38', 'cities'], ['4.9★', 'average rating']].map(([n, l]) => (
+              <div key={l} style={{ textAlign: 'center' }}>
+                <div style={{ fontFamily: fontHeading, fontSize: 44, fontWeight: 600, color: '#101828', letterSpacing: '-0.02em' }}>{n}</div>
+                <div style={{ fontSize: 15, color: '#667085' }}>{l}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ position: 'relative', aspectRatio: '2.6/1', borderRadius: 24, overflow: 'hidden', marginBottom: 72 }}>
+            <HeroPhoto tones={['#F4E6FF', '#D6BBFB', '#7F56D9']} />
+          </div>
+          <SectionHead eyebrow="What we believe" title="Four things we won't compromise on" align="center" />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
+            {values.map((v) => (
+              <div key={v.h} style={{ display: 'flex', gap: 18, padding: 28, border: '1px solid #EAECF0', borderRadius: 18 }}>
+                <div style={{ width: 48, height: 48, borderRadius: 12, background: '#F9F5FF', color: brand, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{Icon[v.icon]({ size: 24 })}</div>
+                <div><h3 style={{ fontFamily: fontHeading, fontSize: 20, fontWeight: 600, color: '#101828', margin: '0 0 8px' }}>{v.h}</h3><p style={{ fontSize: 15, lineHeight: 1.6, color: '#475467', margin: 0 }}>{v.b}</p></div>
+              </div>
+            ))}
+          </div>
+        </Container>
+        <CtaBand title="Come make something" sub="Join 9,400 classes or teach your own." primary={['Browse classes', '/']} secondary={['Teach a class', '/teach']} />
+      </div>
+    );
+  };
+
+  // ─── Careers ─────────────────────────────────────────────────────────────────
+  const CareersPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const roles = [
+      { t: 'Senior Product Designer', team: 'Design', loc: 'Brooklyn / Remote', type: 'Full-time' },
+      { t: 'Trust & Safety Lead', team: 'Operations', loc: 'Remote (US)', type: 'Full-time' },
+      { t: 'Host Growth Manager', team: 'Growth', loc: 'Austin', type: 'Full-time' },
+      { t: 'Full-Stack Engineer', team: 'Engineering', loc: 'Brooklyn / Remote', type: 'Full-time' },
+      { t: 'Community Photographer', team: 'Content', loc: 'Portland', type: 'Contract' },
+    ];
+    const perks = [['leaf', 'A class on us, monthly', 'Learn something with your hands every month, on the company.'], ['globe', 'Remote-friendly', 'Work from anywhere in the US, with two team weeks a year.'], ['shield', 'Real benefits', 'Full health, dental, vision, and a 401(k) match.'], ['award', 'Equity for everyone', 'Every full-time teammate shares in the upside.']];
+    return (
+      <div>
+        <PageHero eyebrow="Careers" title="Help more people make things" sub="We're a small team in Brooklyn (and across the country) building the marketplace for hands-on learning. Come build it with us." tint="#FFF6EC" />
+        <Container style={{ padding: '56px 32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20, marginBottom: 72 }}>
+            {perks.map((p) => (
+              <div key={p[1]} style={{ padding: 24, border: '1px solid #EAECF0', borderRadius: 16 }}>
+                <div style={{ width: 44, height: 44, borderRadius: 11, background: '#F9F5FF', color: brand, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>{Icon[p[0]]({ size: 22 })}</div>
+                <h3 style={{ fontFamily: fontHeading, fontSize: 17, fontWeight: 600, color: '#101828', margin: '0 0 6px' }}>{p[1]}</h3>
+                <p style={{ fontSize: 14, color: '#667085', margin: 0, lineHeight: 1.5 }}>{p[2]}</p>
+              </div>
+            ))}
+          </div>
+          <SectionHead eyebrow="Open roles" title="Five ways in" />
+          <div style={{ border: '1px solid #EAECF0', borderRadius: 16, overflow: 'hidden' }}>
+            {roles.map((r, i) => (
+              <div key={r.t} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 24px', borderTop: i ? '1px solid #F2F4F7' : 'none', gap: 16 }}>
+                <div>
+                  <div style={{ fontSize: 18, fontWeight: 600, color: '#101828', fontFamily: fontHeading }}>{r.t}</div>
+                  <div style={{ fontSize: 14, color: '#667085', marginTop: 4, display: 'flex', gap: 14, flexWrap: 'wrap' }}><span>{r.team}</span><span>· {r.loc}</span><span>· {r.type}</span></div>
+                </div>
+                <Btn variant="secondary" size="sm" to="/contact">Apply <Icon.arrowR size={15} /></Btn>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
+    );
+  };
+
+  // ─── Press ───────────────────────────────────────────────────────────────────
+  const PressPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const news = [
+      { src: 'The Verge', date: 'May 2026', t: 'InPerson is betting your next hobby is two blocks away' },
+      { src: 'Fast Company', date: 'Apr 2026', t: 'The anti-MasterClass: why hands-on learning is having a moment' },
+      { src: 'Eater', date: 'Mar 2026', t: 'These home-kitchen cooking classes are booked out for weeks' },
+      { src: 'TechCrunch', date: 'Feb 2026', t: 'InPerson raises to expand its hands-on class marketplace' },
+    ];
+    return (
+      <div>
+        <PageHero eyebrow="Press" title="Press & media" sub="Story ideas, assets, and the latest on InPerson. For interviews and review classes, reach our team below." />
+        <Container style={{ padding: '56px 32px 80px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 56, alignItems: 'start' }}>
+            <div>
+              <SectionHead title="In the news" />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                {news.map((n, i) => (
+                  <a key={i} href="#/press" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 0', borderTop: i ? '1px solid #EAECF0' : 'none', gap: 16 }}>
+                    <div>
+                      <div style={{ fontSize: 13, color: brand, fontWeight: 600, marginBottom: 6 }}>{n.src} · {n.date}</div>
+                      <div style={{ fontSize: 19, fontWeight: 600, color: '#101828', fontFamily: fontHeading, lineHeight: 1.3 }}>{n.t}</div>
+                    </div>
+                    <Icon.upRight size={20} stroke="#98A2B3" />
+                  </a>
+                ))}
+              </div>
+            </div>
+            <aside style={{ border: '1px solid #EAECF0', borderRadius: 16, padding: 24, background: '#F9FAFB' }}>
+              <h3 style={{ fontFamily: fontHeading, fontSize: 19, fontWeight: 600, color: '#101828', margin: '0 0 8px' }}>Press kit</h3>
+              <p style={{ fontSize: 14, color: '#475467', lineHeight: 1.6, margin: '0 0 16px' }}>Logos, founder photos, brand guidelines, and fact sheet.</p>
+              <Btn variant="dark" full><Icon.upRight size={16} /> Download kit</Btn>
+              <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid #EAECF0', fontSize: 14, color: '#475467' }}>
+                <div style={{ fontWeight: 600, color: '#101828', marginBottom: 6 }}>Media contact</div>
+                <a href="#/contact" style={{ color: brand, textDecoration: 'none' }}>press@inperson.co</a>
+              </div>
+            </aside>
+          </div>
+        </Container>
+      </div>
+    );
+  };
+
+  // ─── Blog ────────────────────────────────────────────────────────────────────
+  const POSTS = [
+    { slug: 'centering-clay', tag: 'Craft', read: '6 min', title: 'The whole secret is centering the clay', excerpt: "Every potter's first ten mugs are wonky — and that's exactly the point. A meditation on starting badly.", kind: 'rings', color: '#EFE4DC', accent: '#B54708', author: 'Anouk Pereira', hue: 340 },
+    { slug: 'why-handmade', tag: 'Ideas', read: '4 min', title: 'Why making things with your hands makes you happier', excerpt: 'The research on flow, focus, and why a three-hour class beats a weekend of scrolling.', kind: 'wash', color: '#E8DFF0', accent: '#6941C6', author: 'The InPerson team', hue: 265 },
+    { slug: 'host-spotlight-maya', tag: 'Hosts', read: '5 min', title: 'Host spotlight: Maya turned sourdough into a livelihood', excerpt: 'How a for-fun baking class in Gowanus became a waitlist of two hundred and a second income.', kind: 'wheat', color: '#F5E9D6', accent: '#B54708', author: 'Hari Bhattacharya', hue: 18 },
+    { slug: 'first-snowboard', tag: 'Outdoors', read: '7 min', title: 'You can learn to snowboard in one morning. Really.', excerpt: 'Diego has taught a thousand beginners. His first rule: learn to fall before you learn to turn.', kind: 'mountain', color: '#DCE9F5', accent: '#1570EF', author: 'Diego Marín', hue: 200 },
+  ];
+
+  const BlogPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const route = window.useRoute();
+    const slug = route.parts[1];
+    if (slug) {
+      const post = POSTS.find((p) => p.slug === slug);
+      if (post) return <BlogPost post={post} brand={brand} fontHeading={fontHeading} />;
+    }
+    const [feat, ...rest] = POSTS;
+    return (
+      <div>
+        <PageHero eyebrow="The InPerson blog" title="Notes on making things" sub="Stories from hosts, ideas about working with your hands, and the occasional how-to." />
+        <Container style={{ padding: '56px 32px 80px' }}>
+          <a href={'#/blog/' + feat.slug} style={{ textDecoration: 'none', display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 40, alignItems: 'center', marginBottom: 64, border: '1px solid #EAECF0', borderRadius: 24, overflow: 'hidden' }}>
+            <div style={{ position: 'relative', aspectRatio: '4/3', height: '100%' }}><Pattern kind={feat.kind} color={feat.color} accent={feat.accent} /></div>
+            <div style={{ padding: '0 40px' }}>
+              <span style={{ fontSize: 13, fontWeight: 600, color: brand }}>{feat.tag} · {feat.read} read</span>
+              <h2 style={{ fontFamily: fontHeading, fontSize: 32, fontWeight: 600, color: '#101828', margin: '12px 0 12px', letterSpacing: '-0.02em', lineHeight: 1.15 }}>{feat.title}</h2>
+              <p style={{ fontSize: 17, color: '#475467', lineHeight: 1.55, margin: '0 0 20px' }}>{feat.excerpt}</p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}><Avatar name={feat.author} hue={feat.hue} size={36} /><span style={{ fontSize: 14, color: '#101828', fontWeight: 500 }}>{feat.author}</span></div>
+            </div>
+          </a>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
+            {rest.map((p) => (
+              <a key={p.slug} href={'#/blog/' + p.slug} style={{ textDecoration: 'none' }}>
+                <div style={{ position: 'relative', aspectRatio: '16/10', borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}><Pattern kind={p.kind} color={p.color} accent={p.accent} /></div>
+                <span style={{ fontSize: 13, fontWeight: 600, color: brand }}>{p.tag} · {p.read} read</span>
+                <h3 style={{ fontFamily: fontHeading, fontSize: 21, fontWeight: 600, color: '#101828', margin: '8px 0 8px', lineHeight: 1.25, letterSpacing: '-0.01em' }}>{p.title}</h3>
+                <p style={{ fontSize: 15, color: '#667085', lineHeight: 1.55, margin: 0 }}>{p.excerpt}</p>
+              </a>
+            ))}
+          </div>
+        </Container>
+      </div>
+    );
+  };
+
+  const BlogPost = ({ post, brand, fontHeading }) => (
+    <div>
+      <Container w={760} style={{ padding: '48px 32px 24px' }}>
+        <button onClick={() => window.navigate('/blog')} style={{ appearance: 'none', border: 0, background: 'transparent', padding: 0, color: '#475467', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontSize: 14, fontFamily: 'inherit', fontWeight: 500, marginBottom: 28 }}><Icon.arrowL size={16} /> All posts</button>
+        <span style={{ fontSize: 13, fontWeight: 600, color: brand }}>{post.tag} · {post.read} read</span>
+        <h1 style={{ fontFamily: fontHeading, fontSize: 'clamp(32px, 4vw, 46px)', fontWeight: 600, color: '#101828', margin: '14px 0 20px', letterSpacing: '-0.025em', lineHeight: 1.1 }}>{post.title}</h1>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}><Avatar name={post.author} hue={post.hue} size={44} /><div><div style={{ fontSize: 15, fontWeight: 600, color: '#101828' }}>{post.author}</div><div style={{ fontSize: 14, color: '#667085' }}>Published May 2026</div></div></div>
+      </Container>
+      <Container w={760} style={{ padding: '0 32px' }}>
+        <div style={{ position: 'relative', aspectRatio: '2/1', borderRadius: 20, overflow: 'hidden', margin: '8px 0 36px' }}><Pattern kind={post.kind} color={post.color} accent={post.accent} /></div>
+      </Container>
+      <Container w={680} style={{ padding: '0 32px 72px' }}>
+        {[post.excerpt,
+          "There's a moment in every beginner class where it clicks — the wobble settles, the hands stop fighting the material, and something real takes shape. It's not about talent. It's about showing up and paying attention for a few hours.",
+          "That's the whole thesis of InPerson, really. You don't get better at making things by watching a video at 2x speed. You get better by standing in a room with someone who's done it a thousand times, getting your hands dirty, and being allowed to be bad at it for a little while.",
+          "So book the class. Make the wonky mug. The good ones come later."]
+          .map((para, i) => <p key={i} style={{ fontSize: 18, lineHeight: 1.75, color: '#344054', margin: '0 0 22px' }}>{para}</p>)}
+        <div style={{ marginTop: 16 }}><Btn variant="primary" to="/">Find a class to try this on</Btn></div>
+      </Container>
+    </div>
+  );
+
+  // ─── Pricing (instructor) ────────────────────────────────────────────────────
+  const PricingPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const rows = [
+      ['Listing your class', 'Free'], ['Monthly fees', 'None'],
+      ['Per-booking fee', 'Flat 15%'], ['Payout speed', 'Same day'],
+      ['Liability insurance', 'Included'], ['Payment processing', 'Included in the 15%'],
+    ];
+    return (
+      <div>
+        <PageHero eyebrow="Pricing" title="One flat fee. Nothing hidden." sub="List for free. We take 15% only when you get booked — and that covers payments, insurance, and support." tint="#FFF6EC" align="center" max={760} />
+        <Container w={760} style={{ padding: '56px 32px 40px' }}>
+          <div style={{ border: '1px solid #EAECF0', borderRadius: 20, overflow: 'hidden' }}>
+            <div style={{ padding: 32, background: 'linear-gradient(135deg, #FAF7FF, #FFF5E6)', textAlign: 'center', borderBottom: '1px solid #EAECF0' }}>
+              <div style={{ fontFamily: fontHeading, fontSize: 64, fontWeight: 600, color: '#101828', letterSpacing: '-0.03em' }}>15%</div>
+              <div style={{ fontSize: 16, color: '#475467' }}>per booking · everything included</div>
+            </div>
+            {rows.map((r, i) => (
+              <div key={r[0]} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 28px', borderTop: i ? '1px solid #F2F4F7' : 'none' }}>
+                <span style={{ fontSize: 16, color: '#475467' }}>{r[0]}</span>
+                <span style={{ fontSize: 16, fontWeight: 600, color: '#101828', display: 'flex', alignItems: 'center', gap: 8 }}><Icon.check size={18} stroke="#079455" /> {r[1]}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: 32 }}>
+            <Btn variant="primary" size="lg" to="/teach/apply">List your class</Btn>
+            <div style={{ fontSize: 14, color: '#667085', marginTop: 12 }}>No card required · live in 48 hours</div>
+          </div>
+        </Container>
+      </div>
+    );
+  };
+
+  // ─── Policy / handbook pages ─────────────────────────────────────────────────
+  const HandbookPage = () => <ContentPage
+    eyebrow="For instructors" title="The host handbook"
+    intro="Everything you need to run a great class — from your first listing to your hundredth five-star review."
+    aside={{ h: 'Ready to start?', p: 'List your class in about five minutes. Our team helps with the rest.', cta: 'List your class', to: '/teach/apply' }}
+    sections={[
+      { h: 'Before your first class', list: ['Write a clear, honest listing — say exactly what students will make and leave with.', 'Set a group size you can genuinely give attention to. Smaller is usually better.', 'Take a few real photos of your space and past work. No stock images.'] },
+      { h: 'Running the class', p: ['Start with safety, then get hands busy fast. People came to do, not to watch.', 'Learn names. Ask what each person is hoping to get out of the day, and tailor as you go.'] },
+      { h: 'After class', list: ['Send a quick thank-you and any promised notes or recipes.', 'Encourage reviews — they’re how new students find you.', 'Block out dates you’re away so your calendar stays accurate.'] },
+      { h: 'Getting paid', p: ['We deposit your earnings the evening you teach, minus a flat 15%. Add your bank details once under your host settings and it’s automatic.'] },
+    ]} />;
+
+  const InsurancePage = () => <ContentPage
+    eyebrow="Trust & safety" title="Insurance, explained"
+    intro="Every booked class on InPerson is covered by our host liability policy — at no extra cost to you or your students."
+    updated="June 2026"
+    aside={{ h: 'Questions about a class?', p: 'Our trust team is here every day.', cta: 'Contact support', to: '/contact' }}
+    sections={[
+      { h: 'What’s covered', list: ['Third-party bodily injury during a booked class.', 'Third-party property damage at the class location.', 'Up to $1,000,000 per occurrence, subject to policy terms.'] },
+      { h: 'Who it covers', p: ['Coverage applies to verified hosts running classes booked through InPerson. It activates automatically the moment a class is confirmed — there’s nothing to sign up for.'] },
+      { h: 'What’s not covered', list: ['Activities outside the scope of the booked class.', 'Pre-existing damage or intentional acts.', 'Personal property of the host or students.'] },
+      { h: 'Filing a claim', p: ['If something happens, contact our trust team within 72 hours. We’ll guide you through documentation and next steps.'] },
+    ]} />;
+
+  const TrustPage = () => <ContentPage
+    eyebrow="Trust & safety" title="Trust & safety"
+    intro="A few people make the magic — and a lot of quiet work keeps everyone safe. Here’s how."
+    aside={{ h: 'Need to report something?', p: 'Tell us and we’ll act quickly and confidentially.', cta: 'Contact support', to: '/contact' }}
+    sections={[
+      { h: 'How we vet hosts', list: ['Identity verification for every host.', 'Background checks before a first class goes live.', 'Human review of every listing for safety and accuracy.'] },
+      { h: 'Safe by design', p: ['Payments stay on-platform, so you’re protected end to end. Addresses are shared only after booking. Messaging happens through InPerson so there’s always a record.'] },
+      { h: 'If something feels wrong', p: ['Trust your gut. Leave any situation that feels unsafe and contact us — we investigate every report and will make it right.'] },
+      { h: 'Community standards', list: ['Be honest in your listing and your reviews.', 'Treat hosts, students, and spaces with respect.', 'No harassment, discrimination, or unsafe conduct — ever.'] },
+    ]} />;
+
+  const CancellationsPage = () => <ContentPage
+    eyebrow="Policies" title="Cancellation policy"
+    intro="Plans change. Here’s exactly what happens when they do — for students and hosts."
+    updated="June 2026"
+    aside={{ h: 'Need to cancel?', p: 'Manage any booking from My classes.', cta: 'Go to my classes', to: '/account/classes' }}
+    sections={[
+      { h: 'If you’re a student', list: ['Cancel 48+ hours before the start time for a full refund, no questions asked.', 'Inside 48 hours, we’ll try to fill your seat — if we can, you’re fully refunded.', 'If the host cancels, you’re always refunded in full, automatically.'] },
+      { h: 'Refund timing', p: ['Refunds return to your original payment method, typically within 3–5 business days depending on your bank.'] },
+      { h: 'If you’re a host', list: ['Cancel as early as you can — students are notified and refunded immediately.', 'Repeated late cancellations affect your listing’s visibility.', 'Weather or emergency? Reach out and we’ll help you reschedule.'] },
+      { h: 'Gift cards', p: ['Amounts from cancelled classes paid with a gift card return to the gift card balance. Gift cards never expire.'] },
+    ]} />;
+
+  // ─── Contact ─────────────────────────────────────────────────────────────────
+  const ContactPage = () => {
+    const { brand, fontHeading } = window.useTheme();
+    const [f, setF] = useState({ name: '', email: '', topic: 'A booking', message: '' });
+    const [sent, setSent] = useState(false);
+    const up = (k, v) => setF((s) => ({ ...s, [k]: v }));
+    const channels = [['message', 'Live chat', 'Replies in a few minutes, 7am–11pm ET'], ['mail', 'Email', 'support@inperson.co · within a few hours'], ['phone', 'Phone', '(555) 012-3456 · weekdays 9–6 ET']];
+    return (
+      <div>
+        <PageHero eyebrow="Contact" title="Talk to a human" sub="Real people, fast replies, every day. Pick whatever's easiest." />
+        <Container style={{ padding: '56px 32px 80px', display: 'grid', gridTemplateColumns: '1fr 360px', gap: 56, alignItems: 'start' }}>
+          {sent ? (
+            <div style={{ border: '1px solid #EAECF0', borderRadius: 18, padding: 48, textAlign: 'center' }}>
+              <div style={{ width: 64, height: 64, borderRadius: '50%', background: '#ECFDF3', color: '#039855', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}><Icon.check size={30} stroke="#039855" sw={2.4} /></div>
+              <h3 style={{ fontFamily: fontHeading, fontSize: 24, fontWeight: 600, color: '#101828', margin: '0 0 8px' }}>Message sent</h3>
+              <p style={{ fontSize: 16, color: '#667085', margin: '0 0 20px' }}>Thanks {f.name ? f.name.split(' ')[0] : 'there'} — we'll reply to {f.email || 'your email'} shortly.</p>
+              <Btn variant="secondary" onClick={() => { setSent(false); setF({ name: '', email: '', topic: 'A booking', message: '' }); }}>Send another</Btn>
+            </div>
+          ) : (
+            <div style={{ border: '1px solid #EAECF0', borderRadius: 18, padding: 28 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                <CField label="Your name" value={f.name} onChange={(v) => up('name', v)} placeholder="Alex Rivera" />
+                <CField label="Email" value={f.email} onChange={(v) => up('email', v)} placeholder="you@example.com" />
+                <label style={{ display: 'block', gridColumn: '1 / -1' }}>
+                  <span style={cLbl}>What's it about?</span>
+                  <select value={f.topic} onChange={(e) => up('topic', e.target.value)} style={{ ...cInput, cursor: 'pointer' }}>
+                    {['A booking', 'Teaching a class', 'Gift cards', 'Trust & safety', 'Something else'].map((o) => <option key={o}>{o}</option>)}
+                  </select>
+                </label>
+                <CField label="Message" span area value={f.message} onChange={(v) => up('message', v)} placeholder="How can we help?" />
+              </div>
+              <Btn variant="primary" size="lg" style={{ marginTop: 20 }} onClick={() => setSent(true)}>Send message</Btn>
+            </div>
+          )}
+          <aside style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {channels.map((c) => (
+              <div key={c[1]} style={{ border: '1px solid #EAECF0', borderRadius: 14, padding: 20, display: 'flex', gap: 14 }}>
+                <div style={{ width: 42, height: 42, borderRadius: 10, background: '#F9F5FF', color: brand, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{Icon[c[0]]({ size: 20 })}</div>
+                <div><div style={{ fontSize: 16, fontWeight: 600, color: '#101828' }}>{c[1]}</div><div style={{ fontSize: 14, color: '#667085', marginTop: 2, lineHeight: 1.45 }}>{c[2]}</div></div>
+              </div>
+            ))}
+            <a href="#/help" style={{ fontSize: 14, color: brand, fontWeight: 600, textDecoration: 'none', padding: '4px 4px' }}>Browse the help center →</a>
+          </aside>
+        </Container>
+      </div>
+    );
+  };
+
+  const cInput = { width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #D0D5DD', fontSize: 16, fontFamily: 'inherit', color: '#101828', outline: 'none', boxSizing: 'border-box', resize: 'vertical' };
+  const cLbl = { display: 'block', fontSize: 14, fontWeight: 500, color: '#344054', marginBottom: 6 };
+  const CField = ({ label, value, onChange, placeholder, span, area }) => (
+    <label style={{ display: 'block', gridColumn: span ? '1 / -1' : 'auto' }}>
+      <span style={cLbl}>{label}</span>
+      {area ? <textarea value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} rows={4} style={cInput} />
+        : <input value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} style={cInput} />}
+    </label>
+  );
+
+  // ─── Shared CTA band ─────────────────────────────────────────────────────────
+  const CtaBand = ({ title, sub, primary, secondary }) => {
+    const { fontHeading } = window.useTheme();
+    return (
+      <div style={{ background: '#101828', color: '#FFF' }}>
+        <Container style={{ padding: '64px 32px', textAlign: 'center' }}>
+          <h2 style={{ fontFamily: fontHeading, fontSize: 36, fontWeight: 600, margin: '0 0 12px', letterSpacing: '-0.02em' }}>{title}</h2>
+          <p style={{ fontSize: 18, color: '#98A2B3', margin: '0 0 28px' }}>{sub}</p>
+          <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+            <Btn variant="primary" size="lg" to={primary[1]}>{primary[0]}</Btn>
+            <Btn variant="secondary" size="lg" to={secondary[1]} style={{ background: 'transparent', color: '#FFF', borderColor: '#475467' }}>{secondary[0]}</Btn>
+          </div>
+        </Container>
+      </div>
+    );
+  };
+
+  Object.assign(window, { AboutPage, CareersPage, PressPage, BlogPage, PricingPage, HandbookPage, InsurancePage, TrustPage, CancellationsPage, ContactPage });
+})();
+
+</script>
+
+<!-- app.jsx -->
+<script type="text/babel" data-presets="react">
+// app.jsx — root router for InPerson
+(function () {
+  const { useState, useEffect } = React;
+
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accent": "#7F56D9",
+    "fontHeading": "'Fraunces', 'Times New Roman', serif",
+    "cardLayout": "grid"
+  }/*EDITMODE-END*/;
+
+  const PALETTE_OPTIONS = ['#7F56D9', '#6938EF', '#B93815', '#079455', '#101828'];
+  const FONT_HEADING_OPTIONS = [
+    { value: "'Fraunces', 'Times New Roman', serif", label: 'Fraunces (warm serif)' },
+    { value: "'Inter', system-ui, sans-serif", label: 'Inter (clean)' },
+    { value: "'Instrument Serif', serif", label: 'Instrument (editorial)' },
+    { value: "'DM Sans', system-ui, sans-serif", label: 'DM Sans (modern)' },
+  ];
+  const LAYOUT_OPTIONS = ['grid', 'compact', 'list'];
+
+  const NotFound = ({ fontHeading }) => (
+    <Container style={{ padding: '100px 32px', textAlign: 'center' }}>
+      <div style={{ fontFamily: fontHeading, fontSize: 80, fontWeight: 600, color: '#EAECF0', letterSpacing: '-0.03em' }}>404</div>
+      <h1 style={{ fontFamily: fontHeading, fontSize: 30, fontWeight: 600, color: '#101828', margin: '8px 0 12px', letterSpacing: '-0.02em' }}>We couldn't find that page</h1>
+      <p style={{ fontSize: 17, color: '#667085', margin: '0 0 28px' }}>The link may be old, or the class may have wrapped up.</p>
+      <Btn variant="primary" size="lg" to="/">Back to browsing</Btn>
+    </Container>
+  );
+
+  const App = () => {
+    const [t] = React.useState(TWEAK_DEFAULTS);
+    const route = window.useRoute();
+    const [booking, setBooking] = useState(null);
+
+    // scroll to top on navigation; close any open booking modal
+    useEffect(() => { window.scrollTo(0, 0); setBooking(null); }, [route.raw]);
+
+    const theme = { brand: t.accent, fontHeading: t.fontHeading };
+    const seg = route.parts[0];
+
+    let content;
+    if (!seg) {
+      content = <BrowsePage classes={window.CLASSES} onOpen={(c) => window.navigate('/class/' + c.id)} layout={t.cardLayout} brand={t.accent} fontHeading={t.fontHeading} routeCat={route.query.cat} />;
+    } else if (seg === 'class') {
+      const cls = window.classById(route.parts[1]);
+      content = cls
+        ? <DetailPage cls={cls} onBack={() => window.navigate('/')} onBook={setBooking} brand={t.accent} fontHeading={t.fontHeading} />
+        : <NotFound fontHeading={t.fontHeading} />;
+    } else if (seg === 'teach') {
+      content = route.parts[1] === 'apply' ? <TeachApply /> : <TeachPage />;
+    } else if (seg === 'gift-cards') { content = <GiftCardsPage />; }
+    else if (seg === 'help') { content = <HelpPage />; }
+    else if (seg === 'account') { content = <AccountPage />; }
+    else if (seg === 'about') { content = <AboutPage />; }
+    else if (seg === 'press') { content = <PressPage />; }
+    else if (seg === 'careers') { content = <CareersPage />; }
+    else if (seg === 'blog') { content = <BlogPage />; }
+    else if (seg === 'pricing') { content = <PricingPage />; }
+    else if (seg === 'handbook') { content = <HandbookPage />; }
+    else if (seg === 'insurance') { content = <InsurancePage />; }
+    else if (seg === 'trust') { content = <TrustPage />; }
+    else if (seg === 'cancellations') { content = <CancellationsPage />; }
+    else if (seg === 'contact') { content = <ContactPage />; }
+    else { content = <NotFound fontHeading={t.fontHeading} />; }
+
+    return (
+      <window.ThemeCtx.Provider value={theme}>
+        <div style={{ fontFamily: "'Inter', system-ui, -apple-system, sans-serif", color: '#101828', background: '#FFF', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <Header />
+          <div style={{ flex: 1 }}>{content}</div>
+          <Footer />
+
+          <AuthModal />
+          {booking && <BookingFlow ctx={booking} onClose={() => setBooking(null)} brand={t.accent} fontHeading={t.fontHeading} />}
+
+        </div>
+      </window.ThemeCtx.Provider>
+    );
+  };
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App />);
+})();
 
 </script>
 
