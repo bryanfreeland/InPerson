@@ -34,8 +34,9 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-<!-- data.jsx -->
 <script type="text/babel" data-presets="react">
+
+// ============================== data.jsx ==============================
 // data.js — class catalog for InPerson
 
 window.CATEGORIES = [
@@ -282,10 +283,7 @@ window.CLASSES = [
   },
 ];
 
-</script>
-
-<!-- icons.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== icons.jsx ==============================
 // icons.jsx — minimal Untitled UI-style stroke icons
 
 const I = ({ d, size = 20, stroke = 'currentColor', sw = 1.67, fill = 'none' }) => (
@@ -364,10 +362,7 @@ window.Icon = {
   leaf:      (p) => <I {...p} d="M11 20A7 7 0 019.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10zM2 21c0-3 1.85-5.36 5.08-6"/>,
 };
 
-</script>
-
-<!-- patterns.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== patterns.jsx ==============================
 // patterns.jsx — decorative SVG patterns for class card thumbnails
 
 const Pattern = ({ kind, color, accent, style }) => {
@@ -535,10 +530,7 @@ const HeroPhoto = ({ tones = ['#FDE9C9', '#F5B886', '#B27045'], style }) => (
 );
 window.HeroPhoto = HeroPhoto;
 
-</script>
-
-<!-- store.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== store.jsx ==============================
 // store.jsx — global session store, hash router, theme context, helpers
 (function () {
   const { useState, useEffect, useReducer, useContext, createContext } = React;
@@ -680,10 +672,7 @@ window.HeroPhoto = HeroPhoto;
   window.classById = (id) => (window.CLASSES || []).find((c) => c.id === id);
 })();
 
-</script>
-
-<!-- shared.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== shared.jsx ==============================
 // shared.jsx — app shell: Header, Footer, Btn, layout + section primitives
 (function () {
   const { useState, useEffect, useRef } = React;
@@ -933,10 +922,7 @@ window.HeroPhoto = HeroPhoto;
   window.Footer = Footer;
 })();
 
-</script>
-
-<!-- browse.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== browse.jsx ==============================
 // browse.jsx — browse / marketplace page
 
 const { useState, useMemo, useEffect, useRef } = React;
@@ -1315,10 +1301,7 @@ const BrowsePage = ({ classes, onOpen, layout, brand, fontHeading, routeCat }) =
 
 window.BrowsePage = BrowsePage;
 
-</script>
-
-<!-- detail.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== detail.jsx ==============================
 // detail.jsx — class detail page
 
 const DetailPage = ({ cls, onBack, onBook, brand, fontHeading }) => {
@@ -1685,10 +1668,7 @@ const REVIEWS = [
 
 window.DetailPage = DetailPage;
 
-</script>
-
-<!-- booking.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== booking.jsx ==============================
 // booking.jsx — multi-step booking modal (review → details → payment → confirmed)
 
 const STEPS = ['review', 'who', 'pay', 'done'];
@@ -2025,10 +2005,7 @@ const btnSecondary = {
 
 window.BookingFlow = BookingFlow;
 
-</script>
-
-<!-- auth.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== auth.jsx ==============================
 // auth.jsx — sign in / sign up modal driven by Store.authMode
 (function () {
   const { useState, useEffect } = React;
@@ -2142,10 +2119,7 @@ window.BookingFlow = BookingFlow;
   window.AuthModal = AuthModal;
 })();
 
-</script>
-
-<!-- account.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== account.jsx ==============================
 // account.jsx — signed-in member area (dashboard, classes, saved, messages, profile)
 (function () {
   const { useState } = React;
@@ -2460,10 +2434,7 @@ window.BookingFlow = BookingFlow;
   window.AccountPage = AccountPage;
 })();
 
-</script>
-
-<!-- teach.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== teach.jsx ==============================
 // teach.jsx — instructor marketing page + multi-step apply wizard
 (function () {
   const { useState } = React;
@@ -2743,10 +2714,7 @@ window.BookingFlow = BookingFlow;
   window.TeachApply = TeachApply;
 })();
 
-</script>
-
-<!-- giftcards.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== giftcards.jsx ==============================
 // giftcards.jsx — gift card marketing + purchase flow with live preview
 (function () {
   const { useState } = React;
@@ -2892,10 +2860,7 @@ window.BookingFlow = BookingFlow;
   window.GiftCardsPage = GiftCardsPage;
 })();
 
-</script>
-
-<!-- help.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== help.jsx ==============================
 // help.jsx — help center with categories, articles, and search
 (function () {
   const { useState } = React;
@@ -3037,10 +3002,7 @@ window.BookingFlow = BookingFlow;
   window.HelpPage = HelpPage;
 })();
 
-</script>
-
-<!-- pages.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== pages.jsx ==============================
 // pages.jsx — company, editorial & policy pages
 (function () {
   const { useState } = React;
@@ -3430,10 +3392,7 @@ window.BookingFlow = BookingFlow;
   Object.assign(window, { AboutPage, CareersPage, PressPage, BlogPage, PricingPage, HandbookPage, InsurancePage, TrustPage, CancellationsPage, ContactPage });
 })();
 
-</script>
-
-<!-- app.jsx -->
-<script type="text/babel" data-presets="react">
+// ============================== app.jsx ==============================
 // app.jsx — root router for InPerson
 (function () {
   const { useState, useEffect } = React;
@@ -3516,7 +3475,6 @@ window.BookingFlow = BookingFlow;
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(<App />);
 })();
-
 </script>
 
 </body>
